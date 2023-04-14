@@ -1,0 +1,472 @@
+.raffle-details-container {
+    width: calc(100% - 64px);
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.raffle-details-container .raffle-details-content {
+    width: calc(100% - 64px);
+    max-width: 1376px;
+    height: calc(100vh - 64px);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    overflow-y: auto;
+}
+
+.raffle-details-container .raffle-details-content.loading {
+    width: calc(100% - 64px);
+    max-width: 1376px;
+    height: calc(100vh - 64px);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    overflow-y: auto;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-title {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-title h2 {
+    font-family: Bahnschrift;
+    font-size: 32px;
+    font-weight: 600;
+    color: #EDEAE5;
+    cursor: default;
+}
+
+
+
+
+.raffle-details-container .raffle-details-content .raffles-content-area {
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 12px;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 24px;
+  border-radius: 8px;
+  border: 2px #131315 solid;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-image {
+  width: 444px;
+  height: 444px;
+  border-radius: 12px;
+  border: 4px #44CE6B solid;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-image img {
+  width: 420px;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+
+
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .NFT-creator {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .NFT-creator .NFT-creator-info {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .NFT-creator .NFT-creator-info h3 {
+  font-family: Bahnschrift;
+  font-size: 24px;
+  font-weight: 600;
+  color: #EDEAE5;
+  cursor: default;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .NFT-creator .NFT-creator-info p {
+  font-family: Bahnschrift;
+  font-size: 16px;
+  font-weight: 600;
+  color: #6E6E78;
+  cursor: default;
+}
+
+
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .NFT-creator .NFT-rank {
+  width: 200px;
+  height: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .NFT-creator .NFT-rank p {
+  font-family: Bahnschrift;
+  font-size: 20px;
+  font-weight: 600;
+  color: #44CE6B;
+  cursor: default;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .raffle-data {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .raffle-data .left-side-raffle-data {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 8px;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .raffle-data .left-side-raffle-data .raffle-data-cost {
+  width: 100%;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .raffle-data .left-side-raffle-data .raffle-data-cost h3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-family: Bahnschrift;
+  font-size: 20px;
+  font-weight: 600;
+  color: #EDEAE5;
+  cursor: default;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .raffle-data .left-side-raffle-data .raffle-data-cost h3 strong {
+  font-family: Bahnschrift;
+  font-size: 24px;
+  font-weight: 600;
+  color: #FFCC3F;
+  cursor: default;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .raffle-data .left-side-raffle-data .raffle-data-participants {
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .raffle-data .left-side-raffle-data .raffle-data-participants h3 {
+  font-family: Bahnschrift;
+  font-size: 16px;
+  font-weight: 600;
+  color: #6E6E78;
+  cursor: default;
+}
+
+
+
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .raffle-data .right-side-raffle-data {
+  width: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .raffle-data .right-side-raffle-data .raffle-data-tickets {
+  width: auto;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .raffle-data .right-side-raffle-data .raffle-data-tickets button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 4px;
+  background-color: #131315;
+  cursor: pointer;
+  font-family: Bahnschrift;
+  font-size: 16px;
+  font-weight: 600;
+  color: #EDEAE5;
+  border: 2px #131315 solid;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .raffle-data .right-side-raffle-data .raffle-data-tickets button:hover {
+  color: #FFCC3F;
+  background-color: #131315;
+  border: 2px #FFCC3F solid;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .raffle-data .right-side-raffle-data button {
+  width: 120px;
+  height: 40px;
+  border: none;
+  border-radius: 4px;
+  background-color: #FFCC3F;
+  cursor: pointer;
+  font-family: Bahnschrift;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0A0A0B;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .raffle-data .right-side-raffle-data button:hover {
+  opacity: 0.9;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .raffle-data .right-side-raffle-data input {
+  width: 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #0A0A0B;
+  cursor: pointer;
+  font-family: Bahnschrift;
+  font-size: 16px;
+  font-weight: 600;
+  color: #EDEAE5;
+  border: 2px #0A0A0B solid;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .raffle-data .right-side-raffle-data input::-webkit-outer-spin-button,
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .raffle-data .right-side-raffle-data input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .NFT-attributes {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .NFT-attributes .NFT-attributes-title {
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .NFT-attributes .NFT-attributes-title h3 {
+  font-family: Bahnschrift;
+  font-size: 20px;
+  font-weight: 600;
+  color: #EDEAE5;
+  cursor: default;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .NFT-attributes .NFT-attributes-list {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .NFT-attributes .NFT-attributes-list .NFT-attributes-list-item {
+  width: 188px;
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 4px;
+  gap: 4px;
+  padding: 8px;
+  background-color: #131315;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .NFT-attributes .NFT-attributes-list .NFT-attributes-list-item .NFT-attributes-list-item-header {
+  width: 100%;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .NFT-attributes .NFT-attributes-list .NFT-attributes-list-item .NFT-attributes-list-item-header h3 {
+  font-family: Bahnschrift;
+  font-size: 16px;
+  font-weight: 400;
+  color: #6E6E78;
+  cursor: default;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .NFT-attributes .NFT-attributes-list .NFT-attributes-list-item .NFT-attributes-list-item-header span {
+  width: auto;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Bahnschrift;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0A0A0B;
+  cursor: default;
+  background-color: #44CE6B;
+  padding: 0 4px;
+  border-radius: 2px;
+  padding-top: 3px;
+}
+
+
+
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .NFT-attributes .NFT-attributes-list .NFT-attributes-list-item .NFT-attributes-list-item-value {
+  width: 100%;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.raffle-details-container .raffle-details-content .raffles-content-area .raffle-information .raffle-info .NFT-attributes .NFT-attributes-list .NFT-attributes-list-item .NFT-attributes-list-item-value span {
+  font-family: Bahnschrift;
+  font-size: 18px;
+  font-weight: 600;
+  color: #EDEAE5;
+  cursor: default;
+}
+
+
+
+
+
+.loader {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: flex;
+    margin:15px auto;
+    position: relative;
+    color: #EDEAE5;
+    left: -100px;
+    box-sizing: border-box;
+    animation: shadowRolling 2s linear infinite;
+}
+
+@keyframes shadowRolling {
+    0% {
+      box-shadow: 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+    }
+    12% {
+      box-shadow: 100px 0 #EDEAE5, 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+    }
+    25% {
+      box-shadow: 110px 0 #EDEAE5, 100px 0 #EDEAE5, 0px 0 rgba(255, 255, 255, 0), 0px 0 rgba(255, 255, 255, 0);
+    }
+    36% {
+      box-shadow: 120px 0 #EDEAE5, 110px 0 #EDEAE5, 100px 0 #EDEAE5, 0px 0 rgba(255, 255, 255, 0);
+    }
+    50% {
+      box-shadow: 130px 0 #EDEAE5, 120px 0 #EDEAE5, 110px 0 #EDEAE5, 100px 0 #EDEAE5;
+    }
+    62% {
+      box-shadow: 200px 0 rgba(255, 255, 255, 0), 130px 0 #EDEAE5, 120px 0 #EDEAE5, 110px 0 #EDEAE5;
+    }
+    75% {
+      box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 130px 0 #EDEAE5, 120px 0 #EDEAE5;
+    }
+    87% {
+      box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 130px 0 #EDEAE5;
+    }
+    100% {
+      box-shadow: 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0), 200px 0 rgba(255, 255, 255, 0);
+    }
+}

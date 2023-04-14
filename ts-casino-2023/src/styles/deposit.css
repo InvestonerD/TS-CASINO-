@@ -1,0 +1,175 @@
+.deposit-input {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    border-radius: 4px;
+}
+
+.deposit-input .currency-select-container {
+    width: 100%;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border: 2px #222225 solid;
+    border-radius: 4px;
+    transition: .2s;
+}
+
+.deposit-input .currency-select-container:hover {
+    border: 2px #44CE6B solid;
+    transition: .2s;
+}
+
+.deposit-input .currency-select-container.selected {
+    border: 2px #44CE6B solid;
+}
+
+.deposit-input .currency-select-container .left-side-container {
+    width: 260px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.deposit-input .currency-select-container .left-side-container img {
+    width: 16px;
+    height: 16px;
+}
+
+.deposit-input .currency-select-container .left-side-container .currency-amounts {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 4px;
+}
+
+.deposit-input .currency-select-container .left-side-container .currency-amounts input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    font-family: Bahnschrift;
+    font-size: 24px;
+    font-weight: 400;
+    color: #EDEAE5;
+}
+
+.deposit-input .currency-select-container .left-side-container .currency-amounts input::placeholder {
+    font-family: Bahnschrift;
+    font-size: 24px;
+    font-weight: 400;
+    color: #6E6E78;
+}
+
+.deposit-input .currency-select-container .left-side-container .currency-amounts input:focus::placeholder {
+    color: transparent;
+}
+
+.deposit-input .currency-select-container .left-side-container .currency-amounts input:focus {
+    outline: none;
+}
+
+.deposit-input .currency-select-container .left-side-container .currency-amounts span {
+    height: 16px;
+    font-family: Bahnschrift;
+    font-size: 14px;
+    font-weight: 400;
+    color: #6E6E78;
+}
+
+
+
+.deposit-input .currency-select-container .right-side-container {
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    cursor: default;
+}
+
+.deposit-input .currency-select-container .right-side-container .currency-name {
+    width: auto;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 0 16px;
+    background-color: #0A0A0B;
+    border-radius: 4px;
+}
+
+.deposit-input .currency-select-container .right-side-container .currency-name img {
+    width: 16px;
+    height: 16px;
+}
+
+.deposit-input .currency-select-container .right-side-container .currency-name h1 {
+    font-family: Bahnschrift;
+    font-size: 14px;
+    font-weight: 600;
+    color: #EDEAE5;
+    padding-top: 2px;
+}
+
+.deposit-input .currency-select-container .right-side-container .currency-comparison {
+    width: auto;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.deposit-input .currency-select-container .right-side-container .currency-comparison span {
+    font-family: Bahnschrift;
+    font-size: 14px;
+    font-weight: 400;
+    color: #6E6E78;
+    padding-top: 2px;
+}
+
+
+
+
+
+
+
+.deposit-input .deposit-button-container {
+    width: 100%;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.deposit-input .deposit-button-container button {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: #44CE6B;
+    border-radius: 4px;
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0A0A0B;
+    transition: .2s;
+}
+
+.deposit-input .deposit-button-container button:hover {
+    scale: 1.03;
+    transition: .2s;
+    cursor: pointer;
+}

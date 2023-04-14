@@ -1,0 +1,541 @@
+.pvp-jackpot-container {
+    width: calc(100% - 64px);
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.pvp-jackpot-container .jackpot-content::-webkit-scrollbar {
+    display: none;
+}
+
+.pvp-jackpot-container .jackpot-content {
+    width: calc(100% - 64px);
+    max-width: 1376px;
+    height: calc(100vh - 64px);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 24px;
+    overflow-y: auto;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    padding: 32px 16px;
+    background-color: #131315;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    position: relative;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .arrow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%) rotate(135deg);
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 10px 10px 0;
+    border-color: transparent #fff transparent transparent;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .wheel {
+    width: 716px;
+    height: 716px;
+    border-radius: 100%;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .wheel .sc-gsTCUz.bhdLno {
+    min-width: 716px;
+    min-height: 716px;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .wheel .sc-dlfnbm {
+    width: 716px;
+    height: 716px;
+    border-radius: 100%;
+}
+
+
+
+
+
+.pvp-jackpot-container .jackpot-content .wheel-container .wheel-overlay {
+    position: absolute;
+    top: 116px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .wheel-overlay .wheel-overlay-content {
+    width: 556px;
+    height: 556px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 80px;
+    background-color: #0A0A0B;
+    border-radius: 100%;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .wheel-overlay .wheel-overlay-content .wheel-overlay-title {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .wheel-overlay .wheel-overlay-content .wheel-overlay-title h3 {
+    font-family: Bahnschrift;
+    font-size: 20px;
+    font-weight: 600;
+    color: #6E6E78;
+    cursor: default;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .wheel-overlay .wheel-overlay-content .wheel-overlay-title h1 {
+    font-family: Bahnschrift;
+    font-size: 48px;
+    font-weight: 600;
+    color: #EDEAE5;
+    cursor: default;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .wheel-overlay .wheel-overlay-content .wheel-overlay-waiting {
+    width: auto;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .wheel-overlay .wheel-overlay-content .wheel-overlay-waiting h3 {
+    font-family: Bahnschrift;
+    font-size: 20px;
+    font-weight: 600;
+    color: #6E6E78;
+    cursor: default;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .wheel-overlay .wheel-overlay-content .wheel-overlay-waiting span {
+    font-family: Bahnschrift;
+    font-size: 20px;
+    font-weight: 600;
+    color: #6E6E78;
+    cursor: default;
+}
+
+
+
+
+.pvp-jackpot-container .jackpot-content .wheel-container .bet-container {
+    width: 100%;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    z-index: 2;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-button-area {
+    width: 156px;
+    height: 70px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-button-area .bet-button {
+    width: 156px;
+    height: 42px;
+    background-color: #44CE6B;
+    color: #0A0A0B;
+    border: none;
+    border-radius: 2px;
+    font-family: Bahnschrift;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-button-area .bet-button:hover {
+    transform: scale(1.05);
+}
+
+
+
+
+
+
+
+
+
+
+.pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-input-area {
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-input-area .bet-title {
+    width: 100%;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 8px;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-input-area .bet-title h1 {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 400;
+    color: #6E6E78;
+    cursor: default;
+}
+
+
+
+
+.pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-input-area .bet-input-amount {
+    width: 100%;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    background-color: #1C1D21;
+    border-radius: 2px;
+    gap: 4px;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-input-area .bet-input-amount .left-side-inputs {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-input-area .bet-input-amount .left-side-inputs img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-input-area .bet-input-amount .left-side-inputs input {
+    width: 100%;
+    height: 100%;
+    padding: 0 8px;
+    background-color: transparent;
+    border: none;
+    border-radius: 2px;
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #FFFFFF;
+    cursor: text;
+    outline: none;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-input-area .bet-input-amount .left-side-inputs input::-webkit-outer-spin-button, .pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-input-area .bet-input-amount .left-side-inputs input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-input-area .bet-input-amount .right-side-inputs {
+    width: 104px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-input-area .bet-input-amount .right-side-inputs .mini-button {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #131315;
+    border: none;
+    border-radius: 2px;
+    font-family: Bahnschrift;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6E6E78;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-input-area .bet-input-amount .right-side-inputs .mini-button:hover {
+    transform: none;
+    background-color: #44CE6B;
+    color: #0A0A0B;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.pvp-jackpot-container .jackpot-content .active-players-container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .title {
+    width: 100%;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .title span {
+    font-family: Bahnschrift;
+    font-size: 20px;
+    font-weight: 600;
+    color: #EDEAE5;
+    cursor: default;
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    border-radius: 4px;
+    background-color: #131315;
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content .players {
+    width: 100%;
+    height: 100%;
+    max-height: 100px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content .players .players-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content .players .players-container .player-wrapper {
+    flex-basis: calc(33.33% - 8px);
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content .players .players-container .player {
+    width: 100%;
+    min-width: 316px;
+    height: 32px;
+    background-color: #0A0A0B;
+    border-radius: 4px;
+    padding: 0 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: none;
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content .players .players-container .player .player-info {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px; 
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content .players .players-container .player .player-info img {
+    width: 24px;
+    height: 24px;
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content .players .players-container .player .player-info h3 {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #EDEAE5;
+    cursor: default;
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content .players .players-container .player .bet-info {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 24px;
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content .players .players-container .player .bet-info .bet-amount {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content .players .players-container .player .bet-info .bet-amount img {
+    width: 24px;
+    height: 24px;
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content .players .players-container .player .bet-info .bet-amount span {
+    height: 24px;
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #EDEAE5;
+    cursor: default;
+    padding-top: 3px;
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content .players .players-container .player .bet-info .win-percentage {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content .players .players-container .player .bet-info .win-percentage span {
+    height: 24px;
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #DD4742;
+    padding-top: 3px;
+    cursor: default;
+}
+
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content .players .arrows {
+    width: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content .players .arrows img {
+    cursor: pointer;
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content .players .arrows img:hover {
+    opacity: 0.8;
+}
+
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content .last-won {
+    width: 348px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+}
+
+.pvp-jackpot-container .jackpot-content .active-players-container .content .last-won .container {
+    width: 324px;
+    height: 76px;
+    border-radius: 4px;
+    background-color: #0A0A0B;
+}
+
+.roulette-option {
+    position: relative;
+}
+
+.roulette-option-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+
+
+
+
+
+
+.wheel button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.wheel button:hover {
+    background-color: #3e8e41;
+}

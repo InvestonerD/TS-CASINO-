@@ -1,0 +1,933 @@
+.crash-container {
+    width: calc(100% - 64px);
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.crash-container .crash-content {
+    width: calc(100% - 64px);
+    max-width: 1376px;
+    height: calc(100vh - 64px);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 48px;
+    overflow-y: auto;
+}
+
+.crash-container .crash-content::-webkit-scrollbar {
+    display: none;
+}
+
+.crash-container .crash-content .crash-content-area {
+    width: 100%;
+    height: 678px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+
+
+
+
+
+
+.crash-container .crash-content .crash-content-area .left-side {
+    width: 100%;
+    height: 100%;
+    max-width: 767px;
+    background-color: #131315;
+    border-radius: 4px;
+    padding: 12px 16px;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-information {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-information .bankroll {
+    width: 110px;
+    height: 100%;
+    background-color: #0A0A0B;
+    border-radius: 4px;
+    gap: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 16px;
+    cursor: default;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-information .bankroll h3 {
+    height: 12px;
+    font-family: Bahnschrift;
+    font-size: 14px;
+    font-weight: 600;
+    color: #E39A0B;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-information .bankroll p {
+    height: 12px;
+    font-family: Bahnschrift;
+    font-size: 14px;
+    font-weight: 600;
+    color: #EDEAE5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-information .recent-crashes {
+    width: 100%;
+    max-width: 617px;
+    height: 100%;
+    background-color: #0A0A0B;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 0 8px;
+    overflow-x: auto;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-information .recent-crashes::-webkit-scrollbar {
+    display: none;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-information .recent-crashes .crash {
+    min-width: 60px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-information .recent-crashes .crash p {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #6E6E78;
+}
+
+
+
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-random-number {
+    width: 100%;
+    min-height: 398px;
+    border-radius: 4px;
+    border: 4px #0A0A0B solid;
+    background-color: #0A0A0B;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: default;
+    gap: 16px;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-random-number p {
+    font-family: Bahnschrift;
+    font-size: 100px;
+    font-weight: 600;
+    color: #EDEAE5;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-random-number #countdown {
+    font-family: Bahnschrift;
+    font-size: 48px;
+    font-weight: 600;
+    color: #EDEAE5;
+}
+
+
+
+
+
+
+
+
+
+
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-amount {
+    width: 316px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-amount .header {
+    width: 100%;
+    min-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 8px;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-amount .header p {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #EDEAE5;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-amount .content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 2px;
+    gap: 2px;
+    padding: 4px 8px;
+    background-color: #1C1D21;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-amount .content .left-side-inputs {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-amount .content .left-side-inputs input::placeholder {
+    font-family: Bahnschrift;
+    font-size: 18px;
+    font-weight: 600;
+    color: #6E6E78;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-amount .content .left-side-inputs input {
+    width: 160px;
+    height: 32px;
+    border: none;
+    background-color: #1C1D21;
+    font-family: Bahnschrift;
+    font-size: 18px;
+    font-weight: 600;
+    color: #EDEAE5;
+    padding: 0 8px;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-amount .content .left-side-inputs input:focus {
+    outline: none;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-amount .content .left-side-inputs input::-webkit-outer-spin-button,
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-amount .content .left-side-inputs input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+
+
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-amount .content .right-side-inputs {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4px;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-amount .content .right-side-inputs button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background-color: #222225;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #6E6E78;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-amount .content .right-side-inputs button:hover {
+    background-color: #2C2D31;
+    color: #EDEAE5;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-cash-out {
+    width: 256px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-cash-out .header {
+    width: 100%;
+    min-height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 8px;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-cash-out .header p {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #EDEAE5;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-cash-out .content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 2px;
+    gap: 2px;
+    padding: 4px 8px;
+    background-color: #1C1D21;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-cash-out .content .left-side-cash {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-cash-out .content .left-side-cash input::placeholder {
+    font-family: Bahnschrift;
+    font-size: 18px;
+    font-weight: 600;
+    color: #6E6E78;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-cash-out .content .left-side-cash input {
+    width: 100%;
+    height: 32px;
+    border: none;
+    background-color: #1C1D21;
+    font-family: Bahnschrift;
+    font-size: 18px;
+    font-weight: 600;
+    color: #EDEAE5;
+    padding: 0 8px;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-cash-out .content .left-side-cash input:focus {
+    outline: none;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-cash-out .content .left-side-cash input::-webkit-outer-spin-button,
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-cash-out .content .left-side-cash input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+
+
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-cash-out .content .right-side-cash {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: default;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-cash-out .content .right-side-cash p {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #44CE6B;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-make-bet {
+    width: 123px;
+    height: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-make-bet button {
+    width: 100%;
+    height: 42px;
+    border: none;
+    border-radius: 2px;
+    background-color: #0A0A0B;
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #6E6E78;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-make-bet button:hover {
+    background-color: #44CE6B;
+    color: #0A0A0B;
+    transition: .2s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .cash-out-button {
+    width: 100%;
+    height: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .cash-out-button button {
+    width: 256px;
+    height: 48px;
+    border: none;
+    border-radius: 4px;
+    background-color: #0A0A0B;
+    font-family: Bahnschrift;
+    font-size: 20px;
+    font-weight: 600;
+    color: #6E6E78;
+    cursor: pointer;
+    transition: .2s;
+    display: none;
+}
+
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .cash-out-button button:hover {
+    background-color: #44CE6B;
+    color: #0A0A0B;
+    transition: .2s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.crash-container .crash-content .crash-content-area .right-side {
+    width: 100%;
+    height: 100%;
+    max-width: 537px;
+    background-color: #131315;
+    border-radius: 4px;
+    padding: 12px 16px;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .information {
+    width: 100%;
+    height: 88px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .information .information-players {
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    background-color: #0A0A0B;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .information .information-players .information-players-amount {
+    width: 45%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .information .information-players .information-players-amount .active-players {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    cursor: default;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .information .information-players .information-players-amount p {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 400;
+    color: #EDEAE5;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .information .information-players .information-players-amount h1 {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 400;
+    color: #EDEAE5;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .information .information-players .information-players-total-bet-size {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: default;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .information .information-players .information-players-total-bet-size p {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 400;
+    color: #EDEAE5;
+}
+
+
+
+
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .information .information-descriptions {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 8px;
+    cursor: default;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .information .information-descriptions .player {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .information .information-descriptions .cash-out {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .information .information-descriptions .amount {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .information .information-descriptions .profit {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .information .information-descriptions p {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 400;
+    color: #6E6E78;
+}
+
+
+
+
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .crash-bets {
+    width: 100%;
+    height: 100%;
+    min-height: 554px;
+    padding: 0 0 8px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    overflow-y: auto;
+    transition: all 0.2s ease-in-out;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .crash-bets::-webkit-scrollbar {
+    display: none;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .crash-bets:hover {
+    overflow-y: scroll;
+}
+
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .crash-bets .bet {
+    width: 100%;
+    height: 32px;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 4px;
+    padding: 0 8px;
+    gap: 8px;
+    cursor: default;
+    transition: .1s;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .crash-bets .bet:hover {
+    background-color: #0A0A0B;
+    transition: .1s;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .crash-bets .bet .player-info {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .crash-bets .bet .player-info img {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .crash-bets .bet .player-info p {
+    font-family: Bahnschrift;
+    font-size: 14px;
+    font-weight: 600;
+    color: #EDEAE5;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .crash-bets .bet .cash-out-info {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .crash-bets .bet .cash-out-info p {
+    font-family: Bahnschrift;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6E6E78;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .crash-bets .bet .amount-info {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .crash-bets .bet .amount-info p {
+    font-family: Bahnschrift;
+    font-size: 14px;
+    font-weight: 600;
+    color: #EDEAE5;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .crash-bets .bet .profit-info {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+}
+
+.crash-container .crash-content .crash-content-area .right-side .right-side-content .crash-bets .bet .profit-info p {
+    font-family: Bahnschrift;
+    font-size: 14px;
+    font-weight: 600;
+    color: #6E6E78;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 1640px) {
+
+    .crash-container .crash-content .crash-content-area {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 16px;
+    }
+
+    .crash-container .crash-content .crash-content-area .left-side {
+        width: 100%;
+        height: 100%;
+        min-height: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+    }
+
+    .crash-container .crash-content .crash-content-area .left-side .left-side-content {
+        width: 100%;
+        height: 100%;
+        min-height: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+        padding: 12px;
+    }
+
+    .crash-container .crash-content .crash-content-area .left-side .left-side-content .crash-game {
+        width: 100%;
+        height: 100%;
+        min-height: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+    }
+
+    .crash-container .crash-content .crash-content-area .left-side .left-side-content .crash-game .crash-game-area {
+        width: 100%;
+        height: 100%;
+        min-height: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+    }
+
+    .crash-container .crash-content .crash-content-area .left-side .left-side-content .crash-game .crash-game-area .crash-game-area-content {
+        width: 100%;
+        height: 100%;
+        min-height: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+    }
+
+    .crash-container .crash-content .crash-content-area .left-side .left-side-content .crash-game .crash-game-area .crash-game-area-content .crash-game-area-content-top {
+        width: 100%;
+        height: 100%;
+        min-height: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+    }
+
+    .crash-container .crash-content .crash-content-area .right-side {
+        width: 100%;
+        height: 100%;
+        max-width: 767px;
+        min-height: 100%;
+        padding: 12px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+    }
+
+    .crash-container .crash-content .crash-content-area .right-side .right-side-content {
+        width: 100%;
+        height: 100%;
+        min-height: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+    }
+
+    .crash-container .crash-content .crash-content-area .right-side .right-side-content .crash-bets {
+        width: 100%;
+        height: 100%;
+        min-height: 100%;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 12px;
+    }
+
+}

@@ -1,0 +1,196 @@
+.battles-container {
+    width: calc(100% - 64px);
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.battles-container .battles-content {
+    width: calc(100% - 64px);
+    max-width: 1376px;
+    height: calc(100vh - 64px);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    overflow-y: auto;
+}
+
+.battles-container .battles-content .battles-content-title {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.battles-container .battles-content .battles-content-title h1 {
+    font-family: Bahnschrift;
+    font-size: 32px;
+    font-weight: 600;
+    color: #EDEAE5;
+    cursor: default;
+}
+
+.battles-container .battles-content .battles-content-cards {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 8px;
+}
+
+.battles-container .battles-content .battles-content-cards .battles-content-description {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.battles-container .battles-content .battles-content-cards .battles-content-description h2 {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 400;
+    color: #6E6E78;
+    cursor: default;
+}
+
+.battles-container .battles-content .battles-content-cards .battles-content-description .rounds {
+    width: 112px;
+    height: 40px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.battles-container .battles-content .battles-content-cards .battles-content-description .cases {
+    width: 767px;
+    height: 40px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.battles-container .battles-content .battles-content-cards .battles-content-description .cost {
+    width: 89px;
+    height: 40px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.battles-container .battles-content .battles-content-cards .battles-content-description .players {
+    width: 160px;
+    height: 40px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.battles-container .battles-content .battles-content-cards .battles-content-description .status {
+    width: 184px;
+    height: 40px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+.battles-container .battles-content .battles-content-cards .battle-card {
+    width: 100%;
+    height: 110px;
+    border-radius: 4px;
+    background-color: #131315;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.battles-container .battles-content .battles-content-cards .battle-card .rounds {
+    width: 112px;
+    height: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-right: #0A0A0B 2px solid;
+}
+
+.battles-container .battles-content .battles-content-cards .battle-card .rounds .polygon-number {
+    width: 64px;
+    height: 64px;
+    background-image: url(../images/design/PolygonBlack.svg);
+    background-repeat: no-repeat;
+    background-size: fill;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.battles-container .battles-content .battles-content-cards .battle-card .rounds .polygon-number h2 {
+    font-family: Bahnschrift;
+    font-size: 24px;
+    height: 24px;
+    font-weight: 600;
+    color: #EDEAE5;
+    cursor: default;
+}
+
+.battles-container .battles-content .battles-content-cards .battle-card .rounds .card-status {
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.battles-container .battles-content .battles-content-cards .battle-card .rounds .card-status h4 {
+    font-family: Bahnschrift;
+    font-size: 12px;
+    font-weight: 600;
+    color: #6E6E78;
+    cursor: default;
+}
+
+.battles-container .battles-content .battles-content-cards .battle-card .cases {
+    width: 767px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-right: 2px #0A0A0B solid;
+}
+
+.battles-container .battles-content .battles-content-cards .battle-card .cost {
+    width: 89px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 2px #0A0A0B solid;
+}
+
+.battles-container .battles-content .battles-content-cards .battle-card .players {
+    width: 160px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 2px #0A0A0B solid;
+}
+
+.battles-container .battles-content .battles-content-cards .battle-card .status {
+    width: 184px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

@@ -1,0 +1,205 @@
+.home-container {
+    width: calc(100% - 64px);
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.home-container .home-content {
+    width: calc(100% - 64px);
+    max-width: 1376px;
+    height: calc(100vh - 64px);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 48px;
+    overflow-y: auto;
+}
+
+.home-container .home-content .home-content-announcements {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-left-arrow {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-left-arrow:hover img {
+    filter: brightness(0) saturate(100%) invert(96%) sepia(4%) saturate(769%) hue-rotate(323deg) brightness(104%) contrast(86%);
+    cursor: pointer;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content {
+    width: 100%;
+    max-width: 100%;
+    height: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    overflow: hidden;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content .home-content-announcements-content-module {
+    min-width: 24.5%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s;
+    opacity: .7;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content .home-content-announcements-content-module:nth-child(1) {
+    background-color: #131315;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 12px 16px;
+    gap: 8px;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content .home-content-announcements-content-module:nth-child(2) {
+    background-color: #8144CE;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content .home-content-announcements-content-module:nth-child(3) {
+    background-color: #448CCE;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content .home-content-announcements-content-module:nth-child(4) {
+    background-color: #CE4444;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content .home-content-announcements-content-module:nth-child(5) {
+    background-color: #44CE44;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content .home-content-announcements-content-module:nth-child(6) {
+    background-color: #CE4444;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content .home-content-announcements-content-module:nth-child(7) {
+    background-color: #448CCE;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content .home-content-announcements-content-module:nth-child(8) {
+    background-color: #CE449F;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content .home-content-announcements-content-module:hover {
+    opacity: 1;
+}
+
+
+
+
+
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content .home-content-announcements-content-module .crash-module {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content .home-content-announcements-content-module .crash-module .last-rounds {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 0 8px;
+    background-color: #0A0A0B;
+    border-radius: 4px;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content .home-content-announcements-content-module .crash-module .last-rounds span {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #44CE6B;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content .home-content-announcements-content-module .crash-module .last-rounds span:nth-child(4) {
+    color: #DD4742;
+}
+
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content .home-content-announcements-content-module .crash-module .game-display {
+    width: 100%;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    border: 3px #44CE6B solid;
+    background-color: #0A0A0B;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content .home-content-announcements-content-module .crash-module .game-display h1 {
+    font-family: Bahnschrift;
+    font-size: 48px;
+    font-weight: 600;
+    color: #EDEAE5;
+    padding-top: 4px;
+}
+
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content .home-content-announcements-content-module .crash-module .game-title {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 0 8px;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-content .home-content-announcements-content-module .crash-module .game-title h1 {
+    font-family: Bahnschrift;
+    font-size: 24px;
+    font-weight: 600;
+    color: #6E6E78;
+    padding-top: 4px;
+}
+
+
+
+
+
+
+
+
+.home-container .home-content .home-content-announcements .home-content-announcements-right-arrow {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-container .home-content .home-content-announcements .home-content-announcements-right-arrow img {
+    filter: brightness(0) saturate(100%) invert(96%) sepia(4%) saturate(769%) hue-rotate(323deg) brightness(104%) contrast(86%);
+    cursor: pointer;
+}

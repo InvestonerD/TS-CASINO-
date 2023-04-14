@@ -1,0 +1,115 @@
+.BigWins-container {
+    width: 100%;
+    height: 248px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    cursor: default;
+}
+
+.BigWins-container .BigWins-title {
+    width: 100%;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.BigWins-container .BigWins-title h1 {
+    font-family: Bahnschrift;
+    font-size: 20px;
+    font-weight: 600;
+    color: #EDEAE5;
+}
+
+.BigWins-container .BigWins-content {
+    width: 2480px;
+    max-width: 100%;
+    height: 214px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    overflow: hidden;
+    overflow-x: scroll;
+}
+
+.BigWins-container .BigWins-content::-webkit-scrollbar {
+    height: 6px;
+}
+
+.BigWins-container .BigWins-content::-webkit-scrollbar-thumb {
+    background: #EDEAE5;
+    border-radius: 4px;
+}
+
+.BigWins-container .BigWins-content::-webkit-scrollbar-track {
+    background: #0A0A0B;
+    border-radius: 4px;
+}
+
+.BigWins-container .BigWins-content .BigWins-content-module {
+    min-width: 152px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+.BigWins-container .BigWins-content .BigWins-content-module:hover {
+    transform: scale(0.95);
+}
+
+.BigWins-container .BigWins-content .BigWins-content-module .BigWins-content-module-image {
+    width: 152px;
+    height: 152px;
+    border-radius: 4px 4px 0 0;
+    background: linear-gradient(180deg, #E50399 0%, #000A68 100%);
+}
+
+.BigWins-container .BigWins-content .BigWins-content-module .BigWins-content-module-information {
+    width: 100%;
+    height: 62px;
+    border-radius: 0 0 4px 4px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 8px;
+    background-color: #131315;
+}
+
+.BigWins-container .BigWins-content .BigWins-content-module .BigWins-content-module-information .BigWins-content-module-information-user {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.BigWins-container .BigWins-content .BigWins-content-module .BigWins-content-module-information .BigWins-content-module-information-user p {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 400;
+    color: #EDEAE5;
+}
+
+.BigWins-container .BigWins-content .BigWins-content-module .BigWins-content-module-information .BigWins-content-module-information-amount {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.BigWins-container .BigWins-content .BigWins-content-module .BigWins-content-module-information .BigWins-content-module-information-amount p {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #44CE6B;
+}

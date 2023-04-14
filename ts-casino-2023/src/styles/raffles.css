@@ -1,0 +1,212 @@
+.raffles-container {
+    width: calc(100% - 64px);
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.raffles-container .raffles-content {
+    width: calc(100% - 64px);
+    max-width: 1376px;
+    height: calc(100vh - 64px);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    overflow-y: auto;
+}
+
+.raffles-container .raffles-content::-webkit-scrollbar {
+    display: none;
+}
+
+.raffles-container .raffles-content .raffles-content-title {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.raffles-container .raffles-content .raffles-content-title span {
+    font-family: Bahnschrift;
+    font-size: 32px;
+    font-weight: 600;
+    color: #EDEAE5;
+    cursor: default;
+}
+
+.raffles-container .raffles-content .raffles-content-area {
+    width: 100%;
+    height: 678px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+}
+
+.raffles-container .raffles-content .raffles-content-area .raffles-cards {
+    width: 100%;
+    height: auto;
+    flex-wrap: wrap;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 22px;
+    padding: 8px;
+}
+
+.raffles-container .raffles-content .raffles-content-area .raffles-cards .raffle-card {
+    width: 200px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: #131315;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.raffles-container .raffles-content .raffles-content-area .raffles-cards .raffle-card .image-container {
+    width: 184px;
+    height: 184px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+    border-radius: 4px;
+    background-image: url(../images/design/Infected\ Mob.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 4px;
+}
+
+.raffles-container .raffles-content .raffles-content-area .raffles-cards .raffle-card .image-container .price-tag {
+    width: auto;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background-color: #131315;
+    padding: 0 8px;
+    gap: 4px;
+}
+
+.raffles-container .raffles-content .raffles-content-area .raffles-cards .raffle-card .image-container .price-tag h3 {
+    font-family: Bahnschrift;
+    font-size: 20px;
+    font-weight: 600;
+    color: #FFCC01;
+    padding-top: 2%;
+}
+
+.raffles-container .raffles-content .raffles-content-area .raffles-cards .raffle-card .image-container .price-tag span {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 400;
+    color: #EDEAE5;
+    padding-top: 2.5%;
+}
+
+
+
+
+.raffles-container .raffles-content .raffles-content-area .raffles-cards .raffle-card .info-container {
+    width: 100%;
+    height: 52px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.raffles-container .raffles-content .raffles-content-area .raffles-cards .raffle-card .info-container .NFT-name {
+    width: 100%;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.raffles-container .raffles-content .raffles-content-area .raffles-cards .raffle-card .info-container .NFT-name span {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #EDEAE5;
+    padding-top: 2%;
+}
+
+.raffles-container .raffles-content .raffles-content-area .raffles-cards .raffle-card .info-container .raffle-count {
+    width: 100%;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.raffles-container .raffles-content .raffles-content-area .raffles-cards .raffle-card .info-container .raffle-count h3 {
+    font-family: Bahnschrift;
+    font-size: 14px;
+    font-weight: 400;
+    color: #EDEAE5;
+    padding-top: 2%;
+}
+
+.raffles-container .raffles-content .raffles-content-area .raffles-cards .raffle-card .info-container .raffle-count span {
+    font-family: Bahnschrift;
+    font-size: 14px;
+    font-weight: 400;
+    color: #6E6E78;
+    padding-top: 2%;
+}
+
+
+
+
+.raffles-container .raffles-content .raffles-content-area .raffles-cards .raffle-card .raffle-button {
+    width: 100%;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    background-color: #131315;
+    border: 1px #44CE6B solid;
+}
+
+.raffles-container .raffles-content .raffles-content-area .raffles-cards .raffle-card .raffle-button span {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #44CE6B;
+    padding-top: 2%;
+}
+
+
+
+
+.raffles-container .raffles-content .raffles-content-area .raffles-cards .raffle-card:hover {
+    background-color: #222225;
+}
+
+.raffles-container .raffles-content .raffles-content-area .raffles-cards .raffle-card:hover .info-container .NFT-name span {
+    color: #44CE6B;
+}
+
+.raffles-container .raffles-content .raffles-content-area .raffles-cards .raffle-card:hover .raffle-button {
+    background-color: #44CE6B;
+    border: 1px #44CE6B solid;
+}
+
+.raffles-container .raffles-content .raffles-content-area .raffles-cards .raffle-card:hover .raffle-button span {
+    color: #0A0A0B;
+}

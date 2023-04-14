@@ -1,0 +1,1315 @@
+.navbar {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #131315;
+    border-left: 4px #0A0A0B solid;
+    border-right: 4px #0A0A0B solid;
+    padding: 0 24px 0 24px;
+    position: sticky;
+    top: 0;
+    z-index: 9998;
+}
+
+.navbar .left-row {
+    width: 420px;
+    height: 48px;
+    border-radius: 4px;
+    background-color: #0A0A0B;
+    padding: 0 12px 0 12px;
+}
+
+
+
+
+
+.navbar .right-row {
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.navbar .right-row .user-balance {
+    display: none;
+}
+
+.navbar .right-row .user-balance.connected {
+    display: flex;
+    width: auto;
+    height: 44px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 12px;
+    gap: 8px;
+    background-color: #0A0A0B;
+}
+
+.navbar .right-row .user-balance.connected img {
+    width: 20px;
+    height: 20px;
+}
+
+.navbar .right-row .user-balance.connected span {
+    width: auto;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Bahnschrift;
+    font-size: 16px;
+    color: #EDEAE5;
+    font-weight: 600;
+    cursor: default;
+    padding-top: 4px;
+}
+
+.navbar .right-row .user-balance.connected .deposit-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.navbar .right-row .user-balance.connected .deposit-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+.navbar .right-row .user-balance.connected .deposit-icon:hover img {
+    filter: brightness(0) saturate(100%) invert(96%) sepia(4%) saturate(769%) hue-rotate(323deg) brightness(104%) contrast(86%);
+}
+
+.navbar .right-row .user-container {
+    display: none;
+}
+
+.navbar .right-row .user-container.show {
+    display: flex;
+}
+
+.navbar .right-row button {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    border: none;
+    background-color: #44CE6B;
+    border: 2px transparent solid;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0A0A0B;
+    padding: 1px 12px 0 12px;
+    transition: .2s;
+}
+
+.navbar .right-row button:hover {
+    background-color: transparent;
+    border: 2px #44CE6B solid;
+    cursor: pointer;
+    color: #44CE6B;
+    transition: .2s;
+}
+
+.navbar .right-row .icon-container:nth-child(3) {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    display: none;
+}
+
+.navbar .right-row .icon-container:nth-child(3):hover {
+    cursor: pointer;
+}
+
+.navbar .right-row .icon-container:nth-child(3):hover img {
+    filter: brightness(0) saturate(100%) invert(96%) sepia(4%) saturate(769%) hue-rotate(323deg) brightness(104%) contrast(86%);
+}
+
+.navbar .right-row .icon-container.connected:nth-child(3) {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    display: flex;
+}
+
+.navbar .right-row .icon-container:nth-child(4) {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+}
+
+.navbar .right-row .icon-container:nth-child(4):hover {
+    cursor: pointer;
+}
+
+.navbar .right-row .icon-container.open:nth-child(4) img {
+    filter: brightness(0) saturate(100%) invert(47%) sepia(6%) saturate(525%) hue-rotate(201deg) brightness(90%) contrast(88%);
+}
+
+.navbar .right-row .icon-container.open:nth-child(4):hover img {
+    filter: brightness(0) saturate(100%) invert(96%) sepia(4%) saturate(769%) hue-rotate(323deg) brightness(104%) contrast(86%);
+}
+
+.navbar .right-row .icon-container:nth-child(4) img {
+    filter: brightness(0) saturate(100%) invert(13%) sepia(6%) saturate(736%) hue-rotate(201deg) brightness(97%) contrast(82%);
+}
+
+.navbar .right-row .icon-container:nth-child(4):hover img {
+    filter: brightness(0) saturate(100%) invert(96%) sepia(4%) saturate(769%) hue-rotate(323deg) brightness(104%) contrast(86%);
+}
+
+
+
+
+
+
+.navbar .user-profile.close {
+    display: none;
+}
+
+.navbar .user-profile {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+    overflow: hidden;
+}
+
+.navbar .user-profile .user-profile-card {
+    display: none;
+}
+
+.navbar .user-profile .user-profile-card.open {
+    width: 464px;
+    height: 720px;
+    border-radius: 4px;
+    background-color: #131315;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 24px;
+    z-index: 9999;
+}
+
+.navbar .user-profile .user-profile-card.open.open .user-profile-card-header {
+    width: 100%;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-header .user-profile-card-header-left {
+    width: auto;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    cursor: default;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-header .user-profile-card-header-left h1 {
+    font-family: Bahnschrift;
+    font-size: 24px;
+    font-weight: 600;
+    color: #EDEAE5;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-header .user-profile-card-header-right {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-header .user-profile-card-header-right button {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-header .user-profile-card-header-right button:hover img {
+    filter: brightness(0) saturate(100%) invert(96%) sepia(4%) saturate(769%) hue-rotate(323deg) brightness(104%) contrast(86%);
+}
+
+
+
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content {
+    width: 100%;
+    height: 100%;
+    max-height: 628px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    overflow-y: scroll;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content::-webkit-scrollbar {
+    display: none;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-data {
+    width: 100%;
+    height: 180px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-data .image {
+    position: relative;
+    width: 128px;
+    height: 128px;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-data .image img:nth-child(1) {
+    border-radius: 100%;
+    border: 4px #0A0A0B solid;
+    background-color: #0A0A0B;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-data .image img:nth-child(2) {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-data .image img:nth-child(2):hover {
+    filter: brightness(0) saturate(100%) invert(96%) sepia(4%) saturate(769%) hue-rotate(323deg) brightness(104%) contrast(86%);
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-data .information {
+    width: auto;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    position: relative;
+    left: 2.5%;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-data .information h1 {
+    font-family: Bahnschrift;
+    font-size: 20px;
+    font-weight: 600;
+    color: #EDEAE5;
+    left: 50%;
+    cursor: default;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-data .information img:hover {
+    filter: brightness(0) saturate(100%) invert(96%) sepia(4%) saturate(769%) hue-rotate(323deg) brightness(104%) contrast(86%);
+    cursor: pointer;
+    margin-left: auto;
+}
+
+
+
+
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-badges {
+    width: 100%;
+    min-height: 120px;
+    border-radius: 4px;
+    background-color: #1C1D21;
+    padding: 12px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-badges .badges-header {
+    width: 100%;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-badges .badges-header .left-side {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-badges .badges-header .left-side h1 {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #EDEAE5;
+    cursor: default;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-badges .badges-header .right-side {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-badges .badges-header .right-side p {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #6E6E78;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-badges .badges-header .right-side:hover p {
+    color: #44CE6B;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-badges .badges-header .right-side:hover img {
+    filter: brightness(0) saturate(100%) invert(67%) sepia(79%) saturate(393%) hue-rotate(80deg) brightness(90%) contrast(85%);
+}
+
+
+
+
+
+
+
+
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-statistics {
+    width: 100%;
+    min-height: 120px;
+    border-radius: 4px;
+    background-color: #1C1D21;
+    padding: 12px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-statistics .statistics-header {
+    width: 100%;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-statistics .statistics-header .left-side {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-statistics .statistics-header .left-side h1 {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #EDEAE5;
+    cursor: default;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-statistics .statistics-header .right-side {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-statistics .statistics-header .right-side p {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #6E6E78;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-statistics .statistics-header .right-side:hover p {
+    color: #44CE6B;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-statistics .statistics-header .right-side:hover img {
+    filter: brightness(0) saturate(100%) invert(67%) sepia(79%) saturate(393%) hue-rotate(80deg) brightness(90%) contrast(85%);
+}
+
+
+
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-statistics .statistics-content {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-statistics .statistics-content .statistics-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    background-color: #131315;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-statistics .statistics-content .statistics-container h1 {
+    font-family: Bahnschrift;
+    font-size: 14px;
+    font-weight: 400;
+    color: #6E6E78;
+    cursor: default;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-statistics .statistics-content .statistics-container p {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #EDEAE5;
+    cursor: default;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-tickets {
+    width: 100%;
+    min-height: 256px;
+    border-radius: 4px;
+    background-color: #1C1D21;
+    padding: 12px 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-tickets .tickets-header {
+    width: 100%;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-tickets .tickets-header .left-side {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-tickets .tickets-header .left-side h1 {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #EDEAE5;
+    cursor: default;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-tickets .tickets-header .right-side {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    cursor: pointer;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-tickets .tickets-header .right-side p {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #6E6E78;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-tickets .tickets-header .right-side:hover p {
+    color: #44CE6B;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-tickets .tickets-header .right-side:hover img {
+    filter: brightness(0) saturate(100%) invert(67%) sepia(79%) saturate(393%) hue-rotate(80deg) brightness(90%) contrast(85%);
+}
+
+
+
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-tickets .tickets-content {
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-tickets .tickets-content .tickets-container {
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    background-color: #131315;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-tickets .tickets-content .tickets-container h1 {
+    font-family: Bahnschrift;
+    font-size: 14px;
+    font-weight: 400;
+    color: #6E6E78;
+    cursor: default;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-tickets .tickets-content .tickets-container p {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #EDEAE5;
+    cursor: default;
+}
+
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-tickets .tickets-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-tickets .tickets-content p {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 400;
+    color: #6E6E78;
+    cursor: default;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-since {
+    width: 100%;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar .user-profile .user-profile-card.open .user-profile-card-content .user-since p {
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 400;
+    color: #6E6E78;
+    cursor: default;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar .user-profile .user-username-change.closed {
+    display: none;
+}
+
+.navbar .user-profile .user-username-change {
+    width: 464px;
+    height: auto;
+    border-radius: 4px;
+    background-color: #131315;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 24px;
+    gap: 16px;
+}
+
+.navbar .user-profile .user-username-change .user-username-card-header {
+    width: 100%;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .user-profile .user-username-change .user-username-card-header .user-username-card-header-right {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.navbar .user-profile .user-username-change .user-username-card-header .user-username-card-header-right h1 {
+    width: calc(100% - 48px);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Bahnschrift;
+    font-size: 24px;
+    font-weight: 600;
+    color: #EDEAE5;
+    cursor: default;
+}
+
+.navbar .user-profile .user-username-change .user-username-card-header .user-username-card-header-left {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar .user-profile .user-username-change .user-username-card-header .user-username-card-header-left button {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.navbar .user-profile .user-username-change .user-username-card-header .user-username-card-header-left button:hover img {
+    filter: brightness(0) saturate(100%) invert(96%) sepia(4%) saturate(769%) hue-rotate(323deg) brightness(104%) contrast(86%);
+}
+
+
+
+
+
+.navbar .user-profile .user-username-change .user-username-card-content {
+    width: 100%;
+    height: 128px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+}
+
+.navbar .user-profile .user-username-change .user-username-card-content .username-input {
+    width: 256px;
+    height: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar .user-profile .user-username-change .user-username-card-content .username-input input {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 400;
+    color: #EDEAE5;
+    border: none;
+    padding: 0 8px;
+    background-color: #0A0A0B;
+    cursor: text;
+}
+
+.navbar .user-profile .user-username-change .user-username-card-content .username-button {
+    width: 88px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar .user-profile .user-username-change .user-username-card-content .username-button button {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0A0A0B;
+    border: none;
+    background-color: #44CE6B;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.navbar .user-profile .user-username-change .user-username-card-content .username-button button:hover {
+    scale: 1.05;
+    transition: .2s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar .user-profile .currency-select.closed {
+    display: none;
+}
+
+.navbar .user-profile .currency-select {
+    width: 464px;
+    height: auto;
+    border-radius: 4px;
+    background-color: #131315;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 36px 24px;
+    gap: 12px;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-header {
+    width: 100%;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-header .currency-select-card-header-left {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-header .currency-select-card-header-left h1 {
+    font-family: Bahnschrift;
+    font-size: 24px;
+    font-weight: 600;
+    color: #EDEAE5;
+    cursor: default;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-header .currency-select-card-header-right {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-header .currency-select-card-header-right button {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-header .currency-select-card-header-right button:hover img {
+    filter: brightness(0) saturate(100%) invert(96%) sepia(4%) saturate(769%) hue-rotate(323deg) brightness(104%) contrast(86%);
+}
+
+
+
+.navbar .user-profile .currency-select .currency-select-card-content {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 12px 0;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-content .currency-select-container {
+    width: 100%;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border: 2px #222225 solid;
+    border-radius: 4px;
+    transition: .2s;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-content .currency-select-container:hover {
+    border: 2px #44CE6B solid;
+    transition: .2s;
+    cursor: pointer;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-content .currency-select-container.selected:hover {
+    cursor: default;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-content .currency-select-container.locked:hover {
+    border: 2px #DD4742 solid;
+    transition: .2s;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-content .currency-select-container.selected {
+    border: 2px #44CE6B solid;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-content .currency-select-container .left-side-container {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-content .currency-select-container .left-side-container img {
+    width: 16px;
+    height: 16px;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-content .currency-select-container .left-side-container .currency-amounts {
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 4px;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-content .currency-select-container .left-side-container .currency-amounts h1 {
+    height: 24px;
+    font-family: Bahnschrift;
+    font-size: 24px;
+    font-weight: 400;
+    color: #EDEAE5;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-content .currency-select-container .left-side-container .currency-amounts span {
+    height: 16px;
+    font-family: Bahnschrift;
+    font-size: 14px;
+    font-weight: 400;
+    color: #6E6E78;
+}
+
+
+
+.navbar .user-profile .currency-select .currency-select-card-content .currency-select-container .right-side-container {
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-content .currency-select-container .right-side-container.locked {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-content .currency-select-container .right-side-container.locked img {
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-content .currency-select-container .right-side-container .currency-name {
+    width: auto;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 0 16px;
+    background-color: #0A0A0B;
+    border-radius: 4px;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-content .currency-select-container .right-side-container .currency-name img {
+    width: 16px;
+    height: 16px;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-content .currency-select-container .right-side-container .currency-name h1 {
+    font-family: Bahnschrift;
+    font-size: 14px;
+    font-weight: 600;
+    color: #EDEAE5;
+    padding-top: 2px;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-content .currency-select-container .right-side-container .currency-comparison {
+    width: auto;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-content .currency-select-container .right-side-container .currency-comparison span {
+    font-family: Bahnschrift;
+    font-size: 14px;
+    font-weight: 400;
+    color: #6E6E78;
+    padding-top: 2px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar .user-profile .currency-select .currency-select-card-buttons {
+    width: 100%;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-buttons button:nth-child(1) {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #6E6E78;
+    border: 2px #222225 solid;
+    background-color: transparent;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-buttons button:nth-child(1):hover {
+    scale: 1.05;
+    transition: .2s;
+    color: #EDEAE5;
+    border: 2px #EDEAE5 solid;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-buttons button:nth-child(2) {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    font-family: Bahnschrift;
+    font-size: 16px;
+    font-weight: 600;
+    color: #0A0A0B;
+    border: none;
+    background-color: #44CE6B;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.navbar .user-profile .currency-select .currency-select-card-buttons button:nth-child(2):hover {
+    scale: 1.05;
+    transition: .2s;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar .user-profile .user-deposit.closed {
+    display: none;
+}
+
+.navbar .user-profile .user-deposit {
+    width: 464px;
+    height: auto;
+    border-radius: 4px;
+    background-color: #131315;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 36px 24px;
+    gap: 12px;
+}
+
+.navbar .user-profile .user-deposit .user-deposit-card-header {
+    width: 100%;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar .user-profile .user-deposit .user-deposit-card-header .user-deposit-card-header-right {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar .user-profile .user-deposit .user-deposit-card-header .user-deposit-card-header-right h1 {
+    font-family: Bahnschrift;
+    font-size: 24px;
+    font-weight: 600;
+    color: #EDEAE5;
+    cursor: default;
+}
+
+.navbar .user-profile .user-deposit .user-deposit-card-header .user-deposit-card-header-left {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.navbar .user-profile .user-deposit .user-deposit-card-header .user-deposit-card-header-left button {
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.navbar .user-profile .user-deposit .user-deposit-card-header .user-deposit-card-header-left button:hover img {
+    filter: brightness(0) saturate(100%) invert(96%) sepia(4%) saturate(769%) hue-rotate(323deg) brightness(104%) contrast(86%);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.navbar .user-profile .user-deposit .user-deposit-card-content .extra-promotions svg:hover path{
+    stroke: #44CE6B;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.toastify-toast .toast-image {
+    margin-right: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    text-align: center;
+}
+
+.toastify-toast .toast-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.animate__animated.animate__fadeIn {
+    animation-duration: 0.5s;
+}
