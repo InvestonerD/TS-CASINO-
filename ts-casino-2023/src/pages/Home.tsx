@@ -9,7 +9,6 @@ import '../styles/home.css';
 
 import left_arrow from '../images/icons/left-arrow.svg';
 import right_arrow from '../images/icons/right-arrow.svg';
-import { toast } from 'react-toastify';
 
 function Home(): JSX.Element {
   function moveRight() {

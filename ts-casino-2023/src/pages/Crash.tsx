@@ -14,8 +14,8 @@ import avatar from '../images/design/bet-avatar.png'
 import io from 'socket.io-client';
 import { toast } from "react-toastify";
 
-const crash = io('casino-server.fly.dev/crash');
-// const crash = io('http://localhost:4000/crash');
+// const crash = io('casino-server.fly.dev/crash');
+const crash = io('http://localhost:4000/crash');
 
 function Crash() {
 

@@ -16,15 +16,10 @@ import back from "../images/icons/back.svg";
 import statistics from "../images/icons/statistics.svg";
 import raffles from "../images/icons/raffles.svg";
 import dragon from "../images/icons/empty-dragon.svg";
-import selected from "../images/design/selected.png";
-import unselected from "../images/design/unselected.png";
-import solana_currency from "../images/design/solana-currency.png";
-import blazed_image from "../images/design/blazed-currency.png";
-import locked from "../images/design/locked.png";
 
+import CurrencySelect from '../context/CurrencySelect';
 import { WalletButton } from '../context/WalletButton';
 import { useWallet } from '@solana/wallet-adapter-react';
-import { useBalance } from '../context/BalanceContext';
 import '@solana/wallet-adapter-react-ui/styles.css';
 import 'animate.css';
 
@@ -46,12 +41,6 @@ interface Data {
     blazed_locked: { $numberDecimal: string };
 }
 
-interface BalanceData {
-    balance: number;
-    updateBalance: (newBalance: number) => void;
-}
-
-
 export const Navbar = () => {
 
     const { publicKey } = useWallet();
@@ -71,82 +60,7 @@ export const Navbar = () => {
         blazed_locked: { $numberDecimal: "0" },
     });
 
-    const { balance, updateBalance } = useBalance() as BalanceData;
-
     const balanceRef = useRef<HTMLDivElement>(null);
-
-    const updateValues = useCallback((data: any, currency: string) => {
-        const solanaPrice = parseFloat(data.solana.$numberDecimal);
-        const balanceEl = document.querySelector(".balance") as HTMLElement;
-        const solana = document.getElementById("solana") as HTMLElement;
-        const solanaConvertion = document.getElementById("solana-convertion") as HTMLElement;
-        const blazed = document.getElementById("blazed") as HTMLElement;
-        const blazedConvertion = document.getElementById("blazed-convertion") as HTMLElement;
-        const blazedLocked = document.getElementById("blazed-locked") as HTMLElement;
-        const username = document.getElementById("username") as HTMLElement;
-        const avatar = document.getElementById("avatar") as HTMLImageElement;
-        const currency_image = document.getElementById("currency-image") as HTMLImageElement;
-    
-        if (balanceRef.current) {
-            balanceRef.current.innerHTML = parseFloat(data.blazed.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-        }
-    
-        if (currency === "blazed") {
-            updateBalance(parseFloat(data.blazed.$numberDecimal));
-            solanaConvertion.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-            blazedConvertion.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-            blazedConvertion.innerHTML = blazed.innerHTML.substring(1);
-            currency_image.src = blazed_image;
-        } else if (currency === "solana") {
-            updateBalance(parseFloat(data.balance.$numberDecimal));
-            balanceEl.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-            solana.innerHTML = (parseFloat(data.balance.$numberDecimal) / solanaPrice).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-            solana.innerHTML = solana.innerHTML.substring(1);
-            solanaConvertion.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-            currency_image.src = solana_currency;
-        } else if (currency === "blazed_locked") {
-            updateBalance(parseFloat(data.blazed_locked.$numberDecimal));
-            balanceEl.innerHTML = parseFloat(data.blazed_locked.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-            solanaConvertion.innerHTML = parseFloat(data.blazed_locked.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-            currency_image.src = locked;
-        }
-    
-        blazed.innerHTML = parseFloat(data.blazed.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-        blazedLocked.innerHTML = parseFloat(data.blazed_locked.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-        username.innerHTML = data.username;
-    
-        if (data.avatar) {
-            avatar.src = data.avatar;
-        } else {
-            avatar.src = default_image;
-        }
-    }, [currency, updateBalance]);
-
-    useEffect(() => {
-        if (publicKey) {
-            setIsConnected(true);
-            socket.emit("wallet-connected", publicKey.toString());
-        } else {
-            setIsConnected(false);
-        }
-    }, [publicKey, currency]);
-
-    useEffect(() => {
-        socket.on("user-data", (data) => {
-            updateValues(data, currency);
-        });
-
-        return () => {
-            socket.off("user-data");
-        }
-
-    }, [currency, updateValues]);
-
-    socket.on("updated-updated-balance-plus", (data) => {
-
-        updateBalance(balance + data);
-
-    });
 
     const toggleClassName = (selector: string, className: string) => {
         document.querySelector(selector)?.classList.toggle(className);
@@ -200,36 +114,6 @@ export const Navbar = () => {
         document.querySelector('.currency-select')?.classList.toggle('closed');
         document.querySelector('.user-profile')?.classList.toggle('close');
         document.querySelector('.user-profile-card')?.classList.toggle('open');
-    };
-
-    const handleCurrencyChange = (currency: string) => {
-        setCurrency(currency);
-        const newBalance = getBalanceForCurrency(currency);
-        updateBalance(newBalance);
-    };
-
-    const getBalanceForCurrency = (currency: string) => {
-        let balance = 0;
-        const solanaPrice = parseFloat(data.solana.$numberDecimal);
-        if (currency === 'solana') {
-            balance = +data.balance.$numberDecimal / solanaPrice;
-        } else if (currency === "blazed") {
-            balance = parseFloat(data.blazed.$numberDecimal);
-        } else if (currency === "blazed_locked") {
-            balance = parseFloat(data.blazed_locked.$numberDecimal);
-        }
-        return balance;
-    };
-
-    const handleCurrencySelectBack = () => {
-        document.querySelector('.currency-select')?.classList.toggle('closed');
-        document.querySelector('.user-profile')?.classList.toggle('close');
-        document.querySelector('.user-profile-card')?.classList.toggle('open');
-    };
-
-    const handleDeposit = () => {
-        document.querySelector('.currency-select')?.classList.toggle('closed');
-        document.querySelector('.user-deposit')?.classList.toggle('closed');
     };
 
     const handleDepositBack = () => {
@@ -474,141 +358,7 @@ export const Navbar = () => {
 
                 </div>
 
-                <div className='currency-select closed animate__animated animate__fadeIn'>
-
-                    <div className="currency-select-card-header">
-
-                        <div className="currency-select-card-header-left">
-
-                            <h1>Bank</h1>
-
-                        </div>
-
-                        <div className="currency-select-card-header-right">
-
-                            <button onClick={handleCurrencySelectBack}> <img src={cross} alt="x" /> </button>
-
-                        </div>
-
-                    </div>
-
-                    <div className="currency-select-card-content">
-
-                        <div className={currency === "solana" ? "currency-select-container selected" : "currency-select-container"} onClick={() => handleCurrencyChange("solana")}>
-
-                            <div className='left-side-container'>
-
-                                <img src={currency === "solana" ? selected : unselected} alt="selected" />
-
-                                <div className='currency-amounts'>
-
-                                    <h1 id='solana'>0.00</h1>
-
-                                    <span id='solana-convertion'>$0.00</span>
-
-                                </div>
-
-                            </div>
-
-                            <div className='right-side-container'>
-
-                                <div className='currency-name'>
-
-                                    <img src={solana_currency} alt="sol" />
-
-                                    <h1>SOLANA</h1>
-
-                                </div>
-
-                                <div className='currency-comparison'>
-
-                                    <span>1 <strong>SOL</strong> = <span id='convertion'></span> <strong>USD</strong></span>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div className={currency === "blazed" ? "currency-select-container selected" : "currency-select-container"} onClick={() => handleCurrencyChange("blazed")}>
-
-                            <div className='left-side-container'>
-
-                                <img src={currency === "blazed" ? selected : unselected} alt="selected" />
-
-                                <div className='currency-amounts'>
-
-                                    <h1 id='blazed'>0.00</h1>
-
-                                    <span id='blazed-convertion'>$0.00</span>
-
-                                </div>
-
-                            </div>
-
-                            <div className='right-side-container'>
-
-                                <div className='currency-name'>
-
-                                    <img src={blazed_image} alt="blazed" />
-
-                                    <h1>BLAZED</h1>
-
-                                </div>
-
-                                <div className='currency-comparison'>
-
-                                    <span>1 <strong>BLAZED</strong> = 1 <strong>USD</strong></span>
-
-                                </div>
-
-                            </div>
-
-                        </div>
-
-                        <div className={currency === "blazed_locked" ? "currency-select-container selected locked" : "currency-select-container locked"} onClick={() => handleCurrencyChange("blazed_locked")}>
-
-                            <div className='left-side-container'>
-
-                                <img src={currency === "blazed_locked" ? selected : unselected} alt="selected" />
-
-                                <div className='currency-amounts'>
-
-                                    <h1>0.00</h1>
-
-                                    <span id='blazed-locked'>$0.00</span>
-
-                                </div>
-
-                            </div>
-
-                            <div className='right-side-container locked'>
-
-                                <div className='currency-name'>
-
-                                    <img src={blazed_image} alt="blazed" />
-
-                                    <h1>BLAZED</h1>
-
-                                </div>
-
-                                <img src={locked} alt="locked" />
-
-                            </div>
-
-                        </div>
-
-                        <div className="currency-select-card-buttons">
-
-                            <button id='currency-withdraw-button' onClick={handleCurrencySelect}>Withdraw</button>
-
-                            <button id='currency-deposit-button' onClick={handleDeposit}>Deposit</button>
-
-                        </div>
-
-                    </div>
-
-                </div>
+                <CurrencySelect />
 
                 <div className='user-deposit closed animate__animated animate__fadeIn'>
 
