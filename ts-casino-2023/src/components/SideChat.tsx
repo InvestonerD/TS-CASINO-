@@ -16,7 +16,7 @@ import io from "socket.io-client";
 import { toast } from "react-toastify";
 
 // const socket = io("casino-server.fly.dev/general");
-const socket = io("http://localhost:4000/general");
+const socket = io("http://192.168.100.41:4000/general");
 
 socket.on("all-chat-messages", (data: { messages: { username: string, timestamp: number, message: string }[] }) => {
     data.messages.sort((a, b) => a.timestamp - b.timestamp);

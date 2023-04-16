@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useEffect } from 'react';
 import "../styles/navbar.css";
 
 import chat from "../images/icons/chat.svg";
@@ -32,7 +32,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // const socket = io("casino-server.fly.dev/general");
-const socket = io("http://localhost:4000/general");
+const socket = io("http://192.168.100.41:4000/general");
 
 export const Navbar = () => {
 
@@ -45,6 +45,14 @@ export const Navbar = () => {
     const [isUserOpen, setIsUserOpen] = useState<boolean>(false);
 
     const balanceRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (publicKey) {
+            setIsConnected(true);
+        } else {
+            setIsConnected(false);
+        }
+    }, [publicKey]);
 
     const toggleClassName = (selector: string, className: string) => {
         document.querySelector(selector)?.classList.toggle(className);
@@ -107,6 +115,7 @@ export const Navbar = () => {
 
     const handleChatClick = () => {
         setIsOpen(!isOpen);
+            document.querySelector('.side-chat')?.classList.toggle('close');
     };
 
     return (

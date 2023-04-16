@@ -28,7 +28,6 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({ currency, handleCurrenc
     const balanceRef = useRef<HTMLElement>(null);
 
     const { publicKey } = useWallet();
-    const [isConnected, setIsConnected] = useState<boolean>(false);
     const [blazedBalance, setBlazedBalance] = useState<number>(0);
     const [solanaBalance, setSolanaBalance] = useState<number>(0);
 
@@ -84,6 +83,9 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({ currency, handleCurrenc
     const updateValues = useCallback(
         (data: any, currency: string) => {
             const solanaPrice = parseFloat(data.solana.$numberDecimal);
+            console.log(solanaPrice);
+            const solanaConvertion = document.getElementById("sol-convertion") as HTMLElement;
+            solanaConvertion.innerHTML = solanaPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
             if (currency === "blazed") {
                 setBlazedBalance(parseFloat(data.blazed.$numberDecimal));
             } else if (currency === "solana") {
@@ -97,11 +99,10 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({ currency, handleCurrenc
 
     useEffect(() => {
         if (publicKey) {
-            setIsConnected(true);
             socket.emit("wallet-connected", publicKey.toString());
-            toast.success("Connected to crash server!");
+            toast.success("Bank connected!");
         } else {
-            setIsConnected(false);
+            toast.error("Bank disconnected!");
         }
     }, [publicKey]);
 
@@ -109,10 +110,6 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({ currency, handleCurrenc
         socket.on("user-data", (data) => {
             updateValues(data, currency);
         });
-
-        return () => {
-            socket.off("user-data");
-        };
     }, [currency, updateValues]);
 
     return (
@@ -158,7 +155,7 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({ currency, handleCurrenc
 
                         <div className='currency-comparison'>
 
-                            <span>1 <strong>SOL</strong> = <span id='convertion'></span> <strong>USD</strong></span>
+                            <span>1 <strong>SOL</strong> = <span id='sol-convertion'></span> <strong>USD</strong></span>
 
                         </div>
 
