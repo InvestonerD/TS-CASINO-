@@ -6,7 +6,6 @@ import {
     useConnection
 } from '@solana/wallet-adapter-react';
 import { WalletModalProvider } from '@solana/wallet-adapter-react-ui';
-import { PhantomWalletAdapter } from '@solana/wallet-adapter-phantom';
 import { SolflareWalletAdapter } from '@solana/wallet-adapter-solflare';
 import { SolongWalletAdapter } from '@solana/wallet-adapter-solong';
 import { TrustWalletAdapter } from '@solana/wallet-adapter-trust';
@@ -49,7 +48,6 @@ const useWalletEffect = () => {
 const WalletAuthWrapper: React.FC<WalletAuthWrapperProps> = ({ children }) => {
     const endpoint = 'https://flashy-blissful-emerald.solana-mainnet.discover.quiknode.pro/5fa5cacd9e4a581e727c0bc7fa844c452f0c30cb/';
     const wallets = [
-        new PhantomWalletAdapter(),
         new SolflareWalletAdapter(),
         new SolongWalletAdapter(),
         new TrustWalletAdapter(),

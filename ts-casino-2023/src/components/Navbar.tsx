@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import "../styles/navbar.css";
 
 import chat from "../images/icons/chat.svg";
@@ -17,7 +17,7 @@ import statistics from "../images/icons/statistics.svg";
 import raffles from "../images/icons/raffles.svg";
 import dragon from "../images/icons/empty-dragon.svg";
 
-import CurrencySelect from '../context/CurrencySelect';
+import { CurrencySelect } from '../context/CurrencySelect';
 import { WalletButton } from '../context/WalletButton';
 import { useWallet } from '@solana/wallet-adapter-react';
 import '@solana/wallet-adapter-react-ui/styles.css';
@@ -34,13 +34,6 @@ import "react-toastify/dist/ReactToastify.css";
 // const socket = io("casino-server.fly.dev/general");
 const socket = io("http://localhost:4000/general");
 
-interface Data {
-    solana: { $numberDecimal: string };
-    balance: { $numberDecimal: string };
-    blazed: { $numberDecimal: string };
-    blazed_locked: { $numberDecimal: string };
-}
-
 export const Navbar = () => {
 
     const { publicKey } = useWallet();
@@ -50,15 +43,6 @@ export const Navbar = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
 
     const [isUserOpen, setIsUserOpen] = useState<boolean>(false);
-
-    const [currency, setCurrency] = useState<string>("solana");
-
-    const [data, setData] = useState<Data>({
-        solana: { $numberDecimal: "0" },
-        balance: { $numberDecimal: "0" },
-        blazed: { $numberDecimal: "0" },
-        blazed_locked: { $numberDecimal: "0" },
-    });
 
     const balanceRef = useRef<HTMLDivElement>(null);
 

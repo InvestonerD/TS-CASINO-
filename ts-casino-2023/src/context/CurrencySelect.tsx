@@ -29,68 +29,84 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({ currency, handleCurrenc
 
     const { publicKey } = useWallet();
     const [isConnected, setIsConnected] = useState<boolean>(false);
+    const [blazedBalance, setBlazedBalance] = useState<number>(0);
+    const [solanaBalance, setSolanaBalance] = useState<number>(0);
+
+    // const updateValues = useCallback(
+    //     (data: any, currency: string) => {
+    //         console.log(data);
+    //         const solanaPrice = parseFloat(data.solana.$numberDecimal);
+    //         const balanceEl = document.querySelector(".balance") as HTMLElement;
+    //         const solana = document.getElementById("solana") as HTMLElement;
+    //         const solanaConvertion = document.getElementById("solana-convertion") as HTMLElement;
+    //         const blazed = document.getElementById("blazed") as HTMLElement;
+    //         const blazedConvertion = document.getElementById("blazed-convertion") as HTMLElement;
+    //         const blazedLocked = document.getElementById("blazed-locked") as HTMLElement;
+    //         const username = document.getElementById("username") as HTMLElement;
+    //         const avatar = document.getElementById("avatar") as HTMLImageElement;
+    //         const currency_image = document.getElementById("currency-image") as HTMLImageElement;
+
+    //         if (balanceRef.current) {
+    //             balanceRef.current.innerHTML = parseFloat(data.blazed.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    //         }
+
+    //         if (currency === "blazed") {
+    //             updateBalance(parseFloat(data.blazed.$numberDecimal));
+    //             solanaConvertion.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    //             blazedConvertion.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    //             blazedConvertion.innerHTML = blazed.innerHTML.substring(1);
+    //             currency_image.src = blazed_image;
+    //         } else if (currency === "solana") {
+    //             updateBalance(parseFloat(data.balance.$numberDecimal));
+    //             balanceEl.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    //             solana.innerHTML = (parseFloat(data.balance.$numberDecimal) / solanaPrice).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    //             solana.innerHTML = solana.innerHTML.substring(1);
+    //             solanaConvertion.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    //             currency_image.src = solana_currency;
+    //         } else if (currency === "blazed_locked") {
+    //             updateBalance(parseFloat(data.blazed_locked.$numberDecimal));
+    //             balanceEl.innerHTML = parseFloat(data.blazed_locked.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    //             solanaConvertion.innerHTML = parseFloat(data.blazed_locked.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    //             currency_image.src = locked;
+    //         }
+
+    //         blazed.innerHTML = parseFloat(data.blazed.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    //         blazedLocked.innerHTML = parseFloat(data.blazed_locked.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    //         username.innerHTML = data.username;
+
+    //         if (data.avatar) {
+    //             avatar.src = data.avatar;
+    //         } else {
+    //             avatar.src = default_image;
+    //         }
+    // }, [currency]);
 
     const updateValues = useCallback(
         (data: any, currency: string) => {
             const solanaPrice = parseFloat(data.solana.$numberDecimal);
-            const balanceEl = document.querySelector(".balance") as HTMLElement;
-            const solana = document.getElementById("solana") as HTMLElement;
-            const solanaConvertion = document.getElementById("solana-convertion") as HTMLElement;
-            const blazed = document.getElementById("blazed") as HTMLElement;
-            const blazedConvertion = document.getElementById("blazed-convertion") as HTMLElement;
-            const blazedLocked = document.getElementById("blazed-locked") as HTMLElement;
-            const username = document.getElementById("username") as HTMLElement;
-            const avatar = document.getElementById("avatar") as HTMLImageElement;
-            const currency_image = document.getElementById("currency-image") as HTMLImageElement;
-
-            if (balanceRef.current) {
-                balanceRef.current.innerHTML = parseFloat(data.blazed.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-            }
-
             if (currency === "blazed") {
-                updateBalance(parseFloat(data.blazed.$numberDecimal));
-                solanaConvertion.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-                blazedConvertion.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-                blazedConvertion.innerHTML = blazed.innerHTML.substring(1);
-                currency_image.src = blazed_image;
+                setBlazedBalance(parseFloat(data.blazed.$numberDecimal));
             } else if (currency === "solana") {
-                updateBalance(parseFloat(data.balance.$numberDecimal));
-                balanceEl.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-                solana.innerHTML = (parseFloat(data.balance.$numberDecimal) / solanaPrice).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-                solana.innerHTML = solana.innerHTML.substring(1);
-                solanaConvertion.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-                currency_image.src = solana_currency;
+                setSolanaBalance(parseFloat(data.balance.$numberDecimal));
             } else if (currency === "blazed_locked") {
-                updateBalance(parseFloat(data.blazed_locked.$numberDecimal));
-                balanceEl.innerHTML = parseFloat(data.blazed_locked.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-                solanaConvertion.innerHTML = parseFloat(data.blazed_locked.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-                currency_image.src = locked;
+                setBlazedBalance(parseFloat(data.blazed_locked.$numberDecimal));
             }
+        },
+        []
+    );
 
-            blazed.innerHTML = parseFloat(data.blazed.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-            blazedLocked.innerHTML = parseFloat(data.blazed_locked.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-            username.innerHTML = data.username;
-
-            if (data.avatar) {
-                avatar.src = data.avatar;
-            } else {
-                avatar.src = default_image;
-            }
-    }, [currency]);
-
-        useEffect(() => {
-            if (publicKey) {
-                setIsConnected(true);
-                socket.emit("wallet-connected", publicKey.toString());
-                toast.success("Connected to crash server!");
-            } else {
-                setIsConnected(false);
-            }
-        }, [publicKey]);
+    useEffect(() => {
+        if (publicKey) {
+            setIsConnected(true);
+            socket.emit("wallet-connected", publicKey.toString());
+            toast.success("Connected to crash server!");
+        } else {
+            setIsConnected(false);
+        }
+    }, [publicKey]);
 
     useEffect(() => {
         socket.on("user-data", (data) => {
-            console.log(data);
             updateValues(data, currency);
         });
 
@@ -98,10 +114,6 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({ currency, handleCurrenc
             socket.off("user-data");
         };
     }, [currency, updateValues]);
-
-    const handleCurrencyChangeInternal = (newCurrency: string) => {
-        handleCurrencyChange(newCurrency);
-    };
 
     return (
         <div className="currency-select closed animate__animated animate__fadeIn">
@@ -235,6 +247,8 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({ currency, handleCurrenc
 
         </div>
     );
+
 };
 
-export default CurrencySelect;
+
+export { CurrencySelect };
