@@ -23,7 +23,7 @@ import { useWallet } from '@solana/wallet-adapter-react';
 import '@solana/wallet-adapter-react-ui/styles.css';
 import 'animate.css';
 
-// import SendBlazed from '../extras/depositSol.js';
+import SendBlazed from '../extras/depositSol';
 // import WithdrawSol from '../extras/withdrawSol.js';
 
 import io from "socket.io-client";
@@ -32,7 +32,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // const socket = io("casino-server.fly.dev/general");
-const socket = io("http://192.168.100.41:4000/general");
+const socket = io("http://localhost:4000/general");
 
 export const Navbar = () => {
 
@@ -45,6 +45,12 @@ export const Navbar = () => {
     const [isUserOpen, setIsUserOpen] = useState<boolean>(false);
 
     const balanceRef = useRef<HTMLDivElement>(null);
+
+    const [currency, setCurrency] = useState<string>('blazed');
+
+    const handleCurrencyChange = (newCurrency: string) => {
+        setCurrency(newCurrency);
+    };
 
     useEffect(() => {
         if (publicKey) {
@@ -108,6 +114,12 @@ export const Navbar = () => {
         document.querySelector('.user-profile-card')?.classList.toggle('open');
     };
 
+    const handleCurrencySelectBack = () => {
+        document.querySelector('.currency-select')?.classList.toggle('closed');
+        document.querySelector('.user-profile')?.classList.toggle('close');
+        document.querySelector('.user-profile-card')?.classList.toggle('open');
+    };
+
     const handleDepositBack = () => {
         document.querySelector('.user-deposit')?.classList.toggle('closed');
         document.querySelector('.currency-select')?.classList.toggle('closed');
@@ -116,6 +128,11 @@ export const Navbar = () => {
     const handleChatClick = () => {
         setIsOpen(!isOpen);
             document.querySelector('.side-chat')?.classList.toggle('close');
+    };
+
+    const handleDeposit = () => {
+        document.querySelector('.user-deposit')?.classList.toggle('closed');
+        document.querySelector('.currency-select')?.classList.toggle('closed');
     };
 
     return (
@@ -351,7 +368,14 @@ export const Navbar = () => {
 
                 </div>
 
-                <CurrencySelect />
+                <CurrencySelect
+                    currency={currency}
+                    handleCurrencyChange={handleCurrencyChange}
+                    handleCurrencySelect={handleCurrencySelect}
+                    handleCurrencySelectBack={handleCurrencySelectBack}
+                    handleDeposit={handleDeposit}
+                    updateBalance={(balance: number) => {}}
+                />
 
                 <div className='user-deposit closed animate__animated animate__fadeIn'>
 
@@ -371,7 +395,7 @@ export const Navbar = () => {
 
                     </div>
 
-                    {/* <SendBlazed /> */}
+                    <SendBlazed />
 
                 </div>
 

@@ -10,6 +10,9 @@ import '../styles/home.css';
 import left_arrow from '../images/icons/left-arrow.svg';
 import right_arrow from '../images/icons/right-arrow.svg';
 
+import { TwitterTweetEmbed } from 'react-twitter-embed';
+import { SendTransaction } from '../extras/sendTransaction';
+
 function Home(): JSX.Element {
   function moveRight() {
     const announcementsContainer = document.querySelector<HTMLElement>(
@@ -135,7 +138,16 @@ function Home(): JSX.Element {
 
                     {/* <BigWins /> */}
 
+                    <div className='home-content-twitter'>
 
+                    <TwitterTweetEmbed
+                      tweetId="1569046779005648896"
+                      options={{ cards: 'hidden', width: 500, theme: 'dark' }}
+                    />
+
+                    </div>
+
+                    <SendTransaction />
 
                 </div>
 

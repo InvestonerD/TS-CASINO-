@@ -12,7 +12,6 @@ import { useWallet } from '@solana/wallet-adapter-react';
 
 import { toast } from "react-toastify";
 
-const socket = io("http://localhost:4000/general");
 
 interface CurrencySelectProps {
     currency: string;
@@ -23,78 +22,35 @@ interface CurrencySelectProps {
     updateBalance: (balance: number) => void;
 }
 
+const socket = io("http://localhost:4000/general");
 const CurrencySelect: React.FC<CurrencySelectProps> = ({ currency, handleCurrencyChange, handleCurrencySelect, handleCurrencySelectBack, handleDeposit, updateBalance, }) => {
-
-    const balanceRef = useRef<HTMLElement>(null);
 
     const { publicKey } = useWallet();
     const [blazedBalance, setBlazedBalance] = useState<number>(0);
     const [solanaBalance, setSolanaBalance] = useState<number>(0);
-
-    // const updateValues = useCallback(
-    //     (data: any, currency: string) => {
-    //         console.log(data);
-    //         const solanaPrice = parseFloat(data.solana.$numberDecimal);
-    //         const balanceEl = document.querySelector(".balance") as HTMLElement;
-    //         const solana = document.getElementById("solana") as HTMLElement;
-    //         const solanaConvertion = document.getElementById("solana-convertion") as HTMLElement;
-    //         const blazed = document.getElementById("blazed") as HTMLElement;
-    //         const blazedConvertion = document.getElementById("blazed-convertion") as HTMLElement;
-    //         const blazedLocked = document.getElementById("blazed-locked") as HTMLElement;
-    //         const username = document.getElementById("username") as HTMLElement;
-    //         const avatar = document.getElementById("avatar") as HTMLImageElement;
-    //         const currency_image = document.getElementById("currency-image") as HTMLImageElement;
-
-    //         if (balanceRef.current) {
-    //             balanceRef.current.innerHTML = parseFloat(data.blazed.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    //         }
-
-    //         if (currency === "blazed") {
-    //             updateBalance(parseFloat(data.blazed.$numberDecimal));
-    //             solanaConvertion.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    //             blazedConvertion.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    //             blazedConvertion.innerHTML = blazed.innerHTML.substring(1);
-    //             currency_image.src = blazed_image;
-    //         } else if (currency === "solana") {
-    //             updateBalance(parseFloat(data.balance.$numberDecimal));
-    //             balanceEl.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    //             solana.innerHTML = (parseFloat(data.balance.$numberDecimal) / solanaPrice).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    //             solana.innerHTML = solana.innerHTML.substring(1);
-    //             solanaConvertion.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    //             currency_image.src = solana_currency;
-    //         } else if (currency === "blazed_locked") {
-    //             updateBalance(parseFloat(data.blazed_locked.$numberDecimal));
-    //             balanceEl.innerHTML = parseFloat(data.blazed_locked.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    //             solanaConvertion.innerHTML = parseFloat(data.blazed_locked.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    //             currency_image.src = locked;
-    //         }
-
-    //         blazed.innerHTML = parseFloat(data.blazed.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    //         blazedLocked.innerHTML = parseFloat(data.blazed_locked.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-    //         username.innerHTML = data.username;
-
-    //         if (data.avatar) {
-    //             avatar.src = data.avatar;
-    //         } else {
-    //             avatar.src = default_image;
-    //         }
-    // }, [currency]);
+    const [solanaConvertedBalance, setSolanaConvertedBalance] = useState<number>(0);
+    const [blazedConvertedBalance, setBlazedConvertedBalance] = useState<number>(0);
+    const [blazedLockedBalance, setBlazedLockedBalance] = useState<number>(0);
 
     const updateValues = useCallback(
-        (data: any, currency: string) => {
+        (data: any) => {
             const solanaPrice = parseFloat(data.solana.$numberDecimal);
             console.log(solanaPrice);
             const solanaConvertion = document.getElementById("sol-convertion") as HTMLElement;
             solanaConvertion.innerHTML = solanaPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-            if (currency === "blazed") {
-                setBlazedBalance(parseFloat(data.blazed.$numberDecimal));
-            } else if (currency === "solana") {
-                setSolanaBalance(parseFloat(data.balance.$numberDecimal));
-            } else if (currency === "blazed_locked") {
-                setBlazedBalance(parseFloat(data.blazed_locked.$numberDecimal));
-            }
+            const avatar = document.getElementById("avatar") as HTMLImageElement;
+            const username = document.getElementById("username") as HTMLElement;
+
+            setBlazedBalance(parseFloat(data.blazed.$numberDecimal));
+            const solanaBal = parseFloat(data.balance.$numberDecimal);
+            setSolanaBalance(solanaBal);
+            setSolanaConvertedBalance(solanaBal / solanaPrice);
+            setBlazedConvertedBalance(parseFloat(data.blazed.$numberDecimal));
+            setBlazedLockedBalance(parseFloat(data.blazed_locked.$numberDecimal));
+            avatar.src = data.avatar;
+            username.innerHTML = data.username;
         },
-        []
+        [setBlazedBalance, setSolanaBalance, setSolanaConvertedBalance, setBlazedLockedBalance]
     );
 
     useEffect(() => {
@@ -107,10 +63,17 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({ currency, handleCurrenc
     }, [publicKey]);
 
     useEffect(() => {
-        socket.on("user-data", (data) => {
-            updateValues(data, currency);
-        });
+        const handleUserData = (data: any) => {
+            updateValues(data);
+        };
+
+        socket.on("user-data", handleUserData);
+
+        return () => {
+            socket.off("user-data", handleUserData);
+        };
     }, [currency, updateValues]);
+
 
     return (
         <div className="currency-select closed animate__animated animate__fadeIn">
@@ -135,9 +98,9 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({ currency, handleCurrenc
 
                         <div className='currency-amounts'>
 
-                            <h1 id='solana'>0.00</h1>
+                            <h1 id='solana'>{solanaConvertedBalance.toFixed(2)}</h1>
 
-                            <span id='solana-convertion'>$0.00</span>
+                            <span id='solana-convertion'>{solanaBalance.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span>
 
                         </div>
 
@@ -171,9 +134,9 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({ currency, handleCurrenc
 
                         <div className='currency-amounts'>
 
-                            <h1 id='blazed'>0.00</h1>
+                            <h1 id='blazed'>{blazedBalance.toFixed(2)}</h1>
 
-                            <span id='blazed-convertion'>$0.00</span>
+                            <span id='blazed-convertion'>${blazedConvertedBalance.toFixed(2)}</span>
 
                         </div>
 
@@ -207,9 +170,9 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({ currency, handleCurrenc
 
                         <div className='currency-amounts'>
 
-                            <h1>0.00</h1>
+                            <h1>{blazedLockedBalance}</h1>
 
-                            <span id='blazed-locked'>$0.00</span>
+                            <span id='blazed-locked'>{blazedLockedBalance.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span>
 
                         </div>
 
