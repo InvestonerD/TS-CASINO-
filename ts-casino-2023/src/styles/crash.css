@@ -455,6 +455,16 @@
     justify-content: flex-end;
 }
 
+.crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-make-bet form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+}
+
 .crash-container .crash-content .crash-content-area .left-side-content .left-side-content-bet-area .betting-inputs .betting-input-make-bet button {
     width: 100%;
     height: 42px;

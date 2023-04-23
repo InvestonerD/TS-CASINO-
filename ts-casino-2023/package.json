@@ -78,8 +78,10 @@
   "dependencies": {
     "@emoji-mart/data": "^1.1.2",
     "@emoji-mart/react": "^1.1.1",
+    "@gemworks/gem-farm-ts": "^0.26.4",
     "@project-serum/serum": "^0.13.65",
     "@solana/buffer-layout": "^4.0.1",
-    "react-twitter-embed": "^4.0.4"
+    "react-twitter-embed": "^4.0.4",
+    "web3modal": "^1.9.12"
   }
 }

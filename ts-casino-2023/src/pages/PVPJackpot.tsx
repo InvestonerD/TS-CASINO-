@@ -3,7 +3,6 @@ import { SideMenu } from '../components/SideMenu.js';
 import { Navbar } from '../components/Navbar.js';
 import { Footer } from '../components/Footer.js';
 import { SideChat } from '../components/SideChat.js';
-import { useBalance } from '../context/BalanceContext.js';
 import '../styles/pvpJackpot.css';
 
 import sol from '../images/design/sol.png'
@@ -20,26 +19,30 @@ import io from 'socket.io-client';
 
 const socket = io('http://localhost:4000/pvp-jackpot');
 // const socket = io('casino-server.fly.dev/pvp-jackpot');
-function PVPJackpot() {
-    const [balance, setBalance] = useState(0);
-    const { width, height } = useWindowSize()
 
+interface SocketData {
+    username: string;
+    betAmount: string;
+    avatar: string;
+}
+
+function PVPJackpot() {
+    const [balance, setBalance] = useState<number>(0);
+    const { width, height } = useWindowSize()
     const [mustSpin, setMustSpin] = useState(false);
     const [showConfetti, setShowConfetti] = useState(false);
     const [initialColors, setInitialColors] = useState(true);
-
     const [rotationAngle, setRotationAngle] = useState(0);
-
     const [prizeNumber, setPrizeNumber] = useState(0);
-
     const [betVolume, setBetVolume] = useState(0);
+    const [percentage, setPercentage] = useState(0);
 
     useEffect(() => {
         const waitForLoad = async () => {
-            return new Promise(resolve => {
+            return new Promise<void>((resolve) => {
                 const interval = setInterval(() => {
                     const loaded = document.getElementById('username')?.innerHTML;
-                    if (loaded && loaded !== "Username") {
+                    if (loaded && loaded !== 'Username') {
                         clearInterval(interval);
                         resolve();
                     }
@@ -50,13 +53,13 @@ function PVPJackpot() {
         const loadData = async () => {
             await waitForLoad();
 
-            const currentBalance = document.querySelector('.balance')?.textContent;
+            const currentBalance = document.getElementById('solana-convertion')?.innerHTML;
             if (currentBalance) {
                 const balanceFixed = currentBalance.replace('$', '').replace(',', '');
-                const finalBalance = parseFloat(balanceFixed);
+                const finalBalance = parseFloat(balanceFixed).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
                 if (setBalance) {
                     setBalance(parseFloat(finalBalance));
-                    toast.success('Your balance is ' + finalBalance.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
+                    toast.success('Your balance is ' + finalBalance);
                 }
             } else {
                 toast.info('Please login to play');
@@ -64,7 +67,7 @@ function PVPJackpot() {
         };
 
         loadData();
-    }, []);
+    }, [setBalance]);
 
     useEffect(() => {
 
@@ -88,6 +91,12 @@ function PVPJackpot() {
                         const betValue = parseFloat(item.betted.$numberDecimal);
                         const percentage = (betValue / totalBets) * 100;
                         const repetitions = Math.round(percentage);
+
+                        const username = document.getElementById('username')?.innerHTML;
+
+                        if (username === item.option) {
+                            setPercentage(percentage);
+                        }
 
                         for (let i = 0; i < repetitions; i++) {
                             const backgroundColor = item.color || '';
@@ -250,25 +259,32 @@ function PVPJackpot() {
         });
 
         socket.on('spin-start', (data) => {
-            console.log('spin-start', data);
             setRotationAngle(data.rotationAngle);
             setPrizeNumber(data.prizeNumber);
             setMustSpin(true);
         });
 
-        socket.on('timer', (data) => {
-            document.getElementById('timer').innerHTML = data;
-
-            document.getElementById('timer').style.display = 'flex';
-
-            document.getElementById('waiting').style.display = 'none';
-
-            if (data === '0') {
-                document.getElementById('timer').style.display = 'none';
-                document.querySelector('.bet-container').style.display = 'none';
-                document.querySelector('.bet-button').style.display = 'none';
+        socket.on('timer', (data: string) => {
+            const timerElement = document.getElementById('timer') as HTMLElement;
+            const progressBar = document.getElementById('progress') as HTMLElement;
+            if (timerElement) {
+                timerElement.style.display = 'flex';
+                progressBar.style.width = `${((25 - Number(data)) / 25) * 100}%`;
             }
 
+            const waitingElement = document.getElementById('waiting');
+            if (waitingElement) {
+                waitingElement.style.display = 'none';
+            }
+
+            if (data === '0') {
+                if (timerElement) {
+                    timerElement.style.display = 'none';
+                }
+                if (waitingElement) {
+                    waitingElement.style.display = 'flex';
+                }
+            }
         });
 
     }, []);
@@ -279,23 +295,40 @@ function PVPJackpot() {
 
     const handleSpinFinished = () => {
         setMustSpin(false);
-    
+
         const winningData = data[prizeNumber];
-    
-        if (winningData && document.getElementById('username').innerHTML === winningData.username) {
-            setShowConfetti(true);
-        }
-    
-        toast.success(`The winner is ${winningData.username}!`);
-    
-        document.querySelector('.bet-button').style.display = 'flex';
-    
+        const username = document.getElementById('username')?.innerHTML;
+
         socket.emit('spin-finished', {
             winningData,
             prize: betVolume,
+            username: username || '',
         });
-    
-        // Reset background color after spin is finished
+
+        if (winningData && document.getElementById('username').innerHTML === winningData.username) {
+            setShowConfetti(true);
+        }
+
+        toast.success(`The winner is ${winningData.username}!`);
+
+        const timerElement = document.getElementById('timer') as HTMLElement;
+        const progressBar = document.getElementById('progress') as HTMLElement;
+
+        if (timerElement) {
+            timerElement.style.display = 'none';
+        }
+
+        if (progressBar) {
+            progressBar.style.display = 'none';
+        }
+
+        const betVolume2 = document.getElementById('total-value');
+        if (betVolume2) {
+            betVolume2.innerHTML = '0.00';
+        }
+
+        setTimeout(() => {
+
         setData(prevData => {
             return prevData.map(item => {
                 return {
@@ -307,14 +340,14 @@ function PVPJackpot() {
                 };
             });
         });
+
+    }, 5500);
     };
-    
-    
 
     const handleBet = () => {
-        const username = document.getElementById('username').innerHTML;
-        const betAmount = document.getElementById('bet-amount').value;
-        const avatar = document.getElementById('avatar').src;
+        const username = document.getElementById('username')?.innerHTML;
+        const betAmount = (document.getElementById('bet-amount') as HTMLInputElement).value;
+        const avatar = document.getElementById('avatar')?.src;
 
         if (username === 'Username') {
             toast.error('You must be logged in to make a bet!');
@@ -327,7 +360,7 @@ function PVPJackpot() {
         }
 
         if (parseFloat(betAmount) <= 0) {
-            toast.error('You must bet at least 0.05 SOL!');
+            toast.error('You must bet at least 0.1 SOL!');
             return;
         }
 
@@ -336,22 +369,22 @@ function PVPJackpot() {
             return;
         }
 
-        socket.emit('bet-sent', {
-            username,
-            betAmount,
-            avatar,
-        });
+        const socketData: SocketData = {
+            username: username,
+            betAmount: betAmount,
+            avatar: avatar,
+            chance: percentage,
+        };
+
+        socket.emit('bet-sent', socketData);
 
         toast.success('Bet placed!');
-
     };
-
-
 
     socket.on('updated-balance-minus', (data) => {
 
         setTimeout(() => {
-            let updated = document.getElementById('balance');
+            let updated = document.getElementById('solana');
             updated.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
             let fixed_Amount = data.balance.$numberDecimal.replace('$', '');
@@ -363,11 +396,30 @@ function PVPJackpot() {
 
     });
 
+    socket.on('updated-balance-plus', (data) => {
+
+        setTimeout(() => {
+            let updated = document.getElementById('solana') as HTMLElement;
+            updated.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+
+            let fixed_Amount = data.balance.$numberDecimal.replace('$', '');
+            let fixed_Amount2 = fixed_Amount.replace(',', '');
+            let final_balance = parseFloat(fixed_Amount2);
+
+            setBalance(final_balance);
+        }, 1000);
+        
+    });
+
+    socket.on('last-winner', (data) => {
+        console.log(data);
+    });
+
     useEffect(() => {
         if (showConfetti) {
             const timer = setTimeout(() => {
                 setShowConfetti(false);
-            }, 4000);
+            }, 5000);
             return () => clearTimeout(timer);
         }
     }, [showConfetti]);
@@ -428,7 +480,11 @@ function PVPJackpot() {
 
                                         <h3 id='waiting'>WAITING FOR PLAYERS</h3>
 
-                                        <span id='timer'></span>
+                                        <div id='timer'>
+
+                                            <div className='progress' id='progress' />
+
+                                        </div>
 
                                     </div>
 
@@ -511,6 +567,16 @@ function PVPJackpot() {
                             <div className='last-won'>
 
                                 <div className='container'>
+
+                                    <div className='user'>
+                                    </div>
+
+                                    <div className='won'>
+                                    </div>
+
+                                    <div className='chance'>
+                                    </div>
+
                                 </div>
 
                             </div>

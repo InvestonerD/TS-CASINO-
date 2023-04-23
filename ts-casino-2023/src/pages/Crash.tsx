@@ -23,8 +23,8 @@ function Crash() {
     const [balance, setBalance] = useState(0);
 
     useEffect(() => {
-        const waitForLoad = async () => {
-            return new Promise(resolve => {
+        const waitForLoad = async (): Promise<void> => {
+            return new Promise<void>(resolve => {
                 const interval = setInterval(() => {
                     const loaded = document.getElementById('username')?.innerHTML;
                     if (loaded && loaded !== "Username") {
@@ -35,89 +35,99 @@ function Crash() {
             });
         };
 
-        const loadData = async () => {
-            await waitForLoad();
+        waitForLoad();
 
-            const currentBalance = document.querySelector('.balance')?.innerHTML;
-            if (currentBalance) {
-                const balanceFixed = currentBalance.replace('$', '').replace(',', '');
-                const finalBalance = parseFloat(balanceFixed);
-                if (setBalance) {
-                    setBalance(parseFloat(finalBalance));
-                    toast.success('Your balance is now ' + finalBalance.toLocaleString('en-US', { style: 'currency', currency: 'USD' }));
-                }
-            } else {
-                toast.info('Please login to play');
-            }
-        };
+        const balanceElement = document.getElementById('balance');
 
-        loadData();
+        if (balanceElement) {
+            const observer = new MutationObserver(() => {
+                const cleanBalance = parseFloat(balanceElement.innerHTML.replace('$', ''));
+                setBalance(cleanBalance);
+            });
+
+            observer.observe(balanceElement, {
+                attributes: true,
+                childList: true,
+                characterData: true,
+                subtree: true
+            });
+        }
+
     }, []);
 
     const crashBetsRef = useRef(null);
 
-    const handleMouseOver = (e) => {
+    const handleMouseOver = (e: React.MouseEvent<HTMLDivElement>) => {
+        const crashBetsRef = useRef<HTMLDivElement>(null);
         const crashBets = crashBetsRef.current;
-        const containerRect = crashBets.getBoundingClientRect();
-        const mouseY = e.clientY - containerRect.top;
-        const containerHeight = containerRect.bottom - containerRect.top;
-        const scrollHeight = crashBets.scrollHeight - containerHeight;
+        const containerRect = crashBets?.getBoundingClientRect();
+        const mouseY = e.clientY - (containerRect?.top ?? 0);
+        const containerHeight = containerRect?.bottom ? containerRect?.bottom - containerRect?.top : 0;
+        const scrollHeight = (crashBets?.scrollHeight ?? 0) - containerHeight;
 
         const scrollAmount = (mouseY / containerHeight) * scrollHeight;
-        crashBets.scrollTop = scrollAmount;
+        if (crashBets) {
+            crashBets.scrollTop = scrollAmount;
 
-        crashBets.addEventListener('mouseleave', () => {
-            crashBets.scrollTop = 0;
-        })
+            crashBets.addEventListener('mouseleave', () => {
+                crashBets.scrollTop = 0;
+            });
 
-        crashBets.style.scrollBehavior = 'smooth';
-    }
+            crashBets.style.scrollBehavior = 'smooth';
+        }
+    };
 
-    const HandleBet = (e) => {
+    const HandleBet = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const username = document.getElementById('username').innerHTML;
-
-        const betAmount = document.getElementById('crash-amount').value;
-
-        const userAvatar = document.getElementById('avatar').src;
-
-        let amount_input = document.getElementById('crash-amount');
-        let cash_out_input = document.getElementById('crash-cash-out');
-
+        const username = document.getElementById('username')?.innerHTML;
+    
+        const betAmount = (document.getElementById('crash-amount') as HTMLInputElement)?.value;
+    
+        const userAvatar = document.getElementById('avatar')?.getAttribute('src');
+    
+        let amount_input = document.getElementById('crash-amount') as HTMLInputElement;
+        let cash_out_input = document.getElementById('crash-cash-out') as HTMLInputElement;
+        const balanceElement = document.querySelector('.balance') as HTMLDivElement;
+        const balanceId = balanceElement.getAttribute('id');
+    
         if (username === "Username") {
             toast.error("You must be logged in to bet!");
         } else if (betAmount === "") {
             toast.error("Please enter an amount to bet!");
-        } else if (betAmount < 0.01) {
+        } else if (Number(betAmount) < 0.01) {
             toast.error("Bet amount must be greater than 0.01!");
-        } else if (betAmount > balance) {
-            toast.error("You don't have enough money to bet that amount! your balance is $" + balance);
+        } else if (Number(betAmount) > parseFloat(balanceElement.innerText)) {
+            toast.error(`You don't have enough money to bet that amount! Your balance is $${balanceElement.innerText}`);
+        } else if (Number(betAmount) > 60) {
+            toast.error("You can't bet more than $60 at a time!");
+        } else if (balanceId === 'solana') {
+            toast.error("You can't bet with Solana!");
         } else {
             crash.emit('bet', {
                 amount: betAmount,
                 username: username,
                 avatar: userAvatar,
-                cashedOut: false
+                cashedOut: false,
+                currency: balanceId
             });
             toast.success("Bet placed!");
             amount_input.disabled = true;
             cash_out_input.disabled = true;
-
+    
             amount_input.style.display = 'none';
             cash_out_input.style.display = 'none';
-
-            document.getElementById('crash-amount').value = "";
-            document.getElementById('crash-cash-out').value = "";
+    
+            document.getElementById('crash-amount')?.setAttribute('value', "");
+            document.getElementById('crash-cash-out')?.setAttribute('value', "");
         }
+    };
 
-    }
-
-    const handleCashOut = (e) => {
+    const handleCashOut = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault();
 
-        const username = document.getElementById('username').innerHTML;
+        const username = document.getElementById('username')?.innerHTML;
 
-        const cashOutAmount = document.getElementById('cashOut-button').innerHTML;
+        const cashOutAmount = document.getElementById('cashOut-button')?.innerHTML;
 
         crash.emit('cashOut', {
             username: username,
@@ -125,121 +135,125 @@ function Crash() {
         });
 
         let cash_out_button = document.getElementById('cashOut-button');
-        cash_out_button.style.display = 'none';
-
-        toast.success("You Won " + cashOutAmount);
-
-    }
-
-    crash.on('countdown', (data) => {
-        let countdown = document.getElementById('countdown');
-        countdown.style.display = 'flex';
-        countdown.innerHTML = 'Game starting in ' + data.countdown;
-
-        if (data.countdown <= 0) {
-            countdown.style.display = 'none';
+        if (cash_out_button) {
+            cash_out_button.style.display = 'none';
         }
 
-        if (data.countdown <= 3) {
-            let amount_input = document.getElementById('crash-amount');
-            let cash_out_input = document.getElementById('crash-cash-out');
-            amount_input.disabled = true;
-            cash_out_input.disabled = true;
+        toast.success(`You Won ${cashOutAmount}`);
+    };
 
-            amount_input.style.display = 'none';
-            cash_out_input.style.display = 'none';
+    crash.on('countdown', (data: { countdown: number }) => {
+        let countdown = document.getElementById('countdown');
+        if (countdown) {
+            countdown.style.display = 'flex';
+            countdown.innerHTML = `Game starting in ${data.countdown}`;
+
+            if (data.countdown <= 0) {
+                countdown.style.display = 'none';
+            }
+
+            if (data.countdown <= 3) {
+                let amount_input = document.getElementById('crash-amount') as HTMLInputElement;
+                let cash_out_input = document.getElementById('crash-cash-out') as HTMLInputElement;
+                if (amount_input && cash_out_input) {
+                    amount_input.disabled = true;
+                    cash_out_input.disabled = true;
+
+                    amount_input.style.display = 'none';
+                    cash_out_input.style.display = 'none';
+                }
+            }
         }
     });
 
-    crash.on('update-counter', (data) => {
+    crash.on('update-counter', (data: { counter: number }) => {
+        let output = document.getElementById('random-output') as HTMLElement;
+        let border = document.querySelector('.left-side-content-random-number') as HTMLElement;
 
-        let output = document.getElementById('random-output');
-        let border = document.querySelector('.left-side-content-random-number');
+        if (output && border) {
+            output.innerHTML = parseFloat(data.counter.toFixed(2)).toString();
+            output.style.fontSize = '100px';
+            border.style.border = '4px solid #0A0A0B';
+            output.style.color = '#EDEAE5';
 
-        output.innerHTML = parseFloat(data.counter).toFixed(2);
-        output.style.fontSize = '100px';
-        border.style.border = '4px solid #0A0A0B';
-        output.style.color = '#EDEAE5';
+            crash.on('bet-cashed-out', (data) => {
+                console.log(data);
+            });
 
-        crash.on('bet-cashed-out', (data) => {
-            
-        });
-
-        if (data.counter >= 2.00) {
-            output.style.animationIterationCount = 'infinite';
-            border.style.border = '4px solid #44CE6B';
-        }
-
-        if (data.counter >= 10.00) {
-            border.style.border = '4px solid #4F44CE';
-        }
-
-        if (data.counter >= 50.00) {
-            border.style.border = '4px solid #FFCC3F';
-        }
-
-
-        let amount_input = document.getElementById('crash-amount');
-        let cash_out_input = document.getElementById('crash-cash-out');
-
-        amount_input.disabled = true;
-        cash_out_input.disabled = true;
-
-        amount_input.style.display = 'none';
-        cash_out_input.style.display = 'none';
-
-        let cash_out_button = document.getElementById('cashOut-button');
-        let cashOutAmount = output.innerHTML.replace('$', '');
-        cash_out_button.innerHTML = parseFloat(cashOutAmount * active_bet).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-
-
-
-
-
-        setTimeout(() => {
-
-            let bets = document.querySelectorAll('.bet');
-            let usernameList = [];
-
-            for (let i = 0; i < bets.length; i++) {
-                let username = bets[i].querySelector('.player-info p').innerHTML;
-                usernameList.push(username);
+            if (data.counter >= 2.00) {
+                output.style.animationIterationCount = 'infinite';
+                border.style.border = '4px solid #44CE6B';
             }
 
-            for (let i = 0; i < usernameList.length; i++) {
-                let username = usernameList[i];
-                let count = 0;
-                for (let j = 0; j < bets.length; j++) {
-                    let currentUsername = bets[j].querySelector('.player-info p').innerHTML;
-                    if (currentUsername === username) {
-                        count++;
-                        if (count > 1) {
-                            bets[j].remove();
+            if (data.counter >= 10.00) {
+                border.style.border = '4px solid #4F44CE';
+            }
+
+            if (data.counter >= 50.00) {
+                border.style.border = '4px solid #FFCC3F';
+            }
+
+            let amount_input = document.getElementById('crash-amount') as HTMLInputElement;
+            let cash_out_input = document.getElementById('crash-cash-out') as HTMLInputElement;
+            let cash_out_button = document.getElementById('cashOut-button');
+
+            if (amount_input && cash_out_input && cash_out_button) {
+                amount_input.disabled = true;
+                cash_out_input.disabled = true;
+
+                amount_input.style.display = 'none';
+                cash_out_input.style.display = 'none';
+
+                let cashOutAmount = output.innerHTML.replace('$', '');
+                let cashOutValue = (Number(cashOutAmount) * active_bet).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+                cash_out_button.innerHTML = cashOutValue.toString();
+            }
+
+
+            setTimeout(() => {
+
+                let bets = document.querySelectorAll('.bet');
+                let usernameList: string[] = [];
+
+                for (let i = 0; i < bets.length; i++) {
+                    let username = bets[i].querySelector('.player-info p')?.innerHTML;
+                    if (username) {
+                        usernameList.push(username);
+                    }
+                }
+
+                for (let i = 0; i < usernameList.length; i++) {
+                    let username = usernameList[i];
+                    let count = 0;
+                    for (let j = 0; j < bets.length; j++) {
+                        let currentUsername = bets[j].querySelector('.player-info p')?.innerHTML;
+                        if (currentUsername === username) {
+                            count++;
+                            if (count > 1) {
+                                bets[j].remove();
+                            }
                         }
                     }
                 }
-            }
 
-        }, 200);
-
+            }, 200);
+        }
     });
 
     crash.on('round', (data) => {
-
         let parent_container = document.querySelector('.recent-crashes');
 
-        data.crashes.forEach((crash) => {
+        data.crashes.forEach((crash: { number: number }) => {
             let recent_crash = document.createElement('div');
             recent_crash.classList.add('crash');
             recent_crash.classList.add('animate__animated', 'animate__fadeInLeft');
-            // create a p element
             let crash_number = document.createElement('p');
-            crash_number.innerHTML = crash.number;
+            crash_number.innerHTML = crash.number.toString();
             recent_crash.appendChild(crash_number);
-            parent_container.appendChild(recent_crash);
+            parent_container?.appendChild(recent_crash);
 
-            if (parent_container.childElementCount > 9) {
-                parent_container.removeChild(parent_container.firstChild);
+            if (parent_container?.childElementCount && parent_container.childElementCount > 9) {
+                parent_container.removeChild(parent_container.firstChild as Node);
             }
 
             if (crash.number < 2.00) {
@@ -257,15 +271,52 @@ function Crash() {
             if (crash.number >= 50.00) {
                 crash_number.style.color = '#FFCC3F';
             }
-
-        }
-        );
+        });
     });
 
     crash.on('updated-balance-minus', (data) => {
-
+        const updateBalance = () => {
+            const balanceElement = document.querySelector('.balance');
+            const balanceId = balanceElement?.id;
+    
+            if (balanceId !== 'blazed') {
+                return;
+            }
+    
+            const bankBalanceElement = document.getElementById('blazed-convertion');
+            if (!bankBalanceElement) {
+                return;
+            }
+    
+            let bankBalance = bankBalanceElement.innerHTML;
+            let fixedBankBalance = bankBalance.replace('$', '').replace(',', '');
+            let finalBankBalance = parseFloat(fixedBankBalance);
+    
+            if (balanceElement) {
+                balanceElement.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    
+                let fixedAmount = data.balance.$numberDecimal.replace('$', '').replace(',', '');
+                let finalBalance = parseFloat(fixedAmount);
+    
+                setBalance(finalBalance);
+            }
+    
+            bankBalanceElement.innerHTML = (finalBankBalance + active_bet).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+        };
+    
         setTimeout(() => {
-            let balance = document.querySelector('.balance');
+            try {
+                updateBalance();
+            } catch (e) {
+                console.error(e);
+            }
+        }, 1500);
+    });
+    
+
+    crash.on('updated-balance-plus', (data) => {
+        let balance = document.querySelector('.balance');
+        if (balance) {
             balance.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
 
             let fixed_Amount = data.balance.$numberDecimal.replace('$', '');
@@ -273,24 +324,12 @@ function Crash() {
             let final_balance = parseFloat(fixed_Amount2);
 
             setBalance(final_balance);
-        }, 1500);
-
-    });
-
-    crash.on('updated-balance-plus', (data) => {
-        let balance = document.querySelector('.balance');
-        balance.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-
-        let fixed_Amount = data.balance.$numberDecimal.replace('$', '');
-        let fixed_Amount2 = fixed_Amount.replace(',', '');
-        let final_balance = parseFloat(fixed_Amount2);
-
-        setBalance(final_balance);
+        }
     });
 
     crash.on('crashed', (data) => {
-        let output = document.getElementById('random-output');
-        let border = document.querySelector('.left-side-content-random-number');
+        let output = document.getElementById('random-output') as HTMLElement;
+        let border = document.querySelector('.left-side-content-random-number') as HTMLElement;
         output.innerHTML = "CRASHED AT " + parseFloat(data.randomNumber).toFixed(2) + "x";
         output.style.fontSize = '64px';
 
@@ -298,12 +337,12 @@ function Crash() {
         border.style.border = '4px solid #DD4742';
         output.style.color = '#DD4742';
 
-        const crashBets = document.querySelector('.crash-bets');
+        const crashBets = document.querySelector('.crash-bets') as HTMLElement;
         crashBets.querySelectorAll('*').forEach(n => n.remove());
 
 
-        let amount_input = document.getElementById('crash-amount');
-        let cash_out_input = document.getElementById('crash-cash-out');
+        let amount_input = document.getElementById('crash-amount') as HTMLInputElement;
+        let cash_out_input = document.getElementById('crash-cash-out') as HTMLInputElement;
 
         amount_input.style.display = 'flex';
         cash_out_input.style.display = 'flex';
@@ -311,7 +350,7 @@ function Crash() {
         amount_input.disabled = false;
         cash_out_input.disabled = false;
 
-        let cash_out_button = document.getElementById('cashOut-button');
+        let cash_out_button = document.getElementById('cashOut-button') as HTMLElement;
         cash_out_button.style.display = 'none';
 
         setBet(0.00);
@@ -320,13 +359,13 @@ function Crash() {
 
     crash.on('active-bets', (data) => {
 
-        let cash_out_button = document.getElementById('cashOut-button');
+        let cash_out_button = document.getElementById('cashOut-button') as HTMLElement;
 
 
         cash_out_button.style.display = 'none';
 
 
-        data.activeBets.forEach((bet) => {
+        data.activeBets.forEach((bet: any) => {
 
 
             let active_bet = document.createElement('div');
@@ -378,10 +417,10 @@ function Crash() {
             active_bet.appendChild(bet_amount_info);
             active_bet.appendChild(bet_profit_info);
 
-            let active_bets_container = document.querySelector('.crash-bets');
+            let active_bets_container = document.querySelector('.crash-bets') as HTMLElement;
             active_bets_container.appendChild(active_bet);
 
-            if (bet.username === document.getElementById('username').innerHTML) {
+            if (bet.username === document.getElementById('username')?.innerHTML) {
                 cash_out_button.innerHTML = bet.amount;
                 setBet(bet.amount);
 
@@ -394,6 +433,7 @@ function Crash() {
 
 
     });
+
 
     return (
         <div className='App'>
@@ -560,7 +600,11 @@ function Crash() {
 
                                         <div className="betting-input-make-bet">
 
-                                            <button onClick={HandleBet}>Make Bet</button>
+                                            <form onSubmit={HandleBet}>
+
+                                                <button type="submit">Make Bet</button>
+
+                                            </form>
 
                                         </div>
 

@@ -137,13 +137,43 @@
     cursor: default;
 }
 
-.pvp-jackpot-container .jackpot-content .wheel-container .wheel-overlay .wheel-overlay-content .wheel-overlay-waiting span {
-    font-family: Bahnschrift;
-    font-size: 20px;
-    font-weight: 600;
-    color: #6E6E78;
-    cursor: default;
+.pvp-jackpot-container .jackpot-content .wheel-container .wheel-overlay .wheel-overlay-content .wheel-overlay-waiting #timer {
+    width: 256px;
+    height: 8px;
+    background-color: #6E6E78;
+    border-radius: 2px;
+    margin-top: 12px;
 }
+
+.pvp-jackpot-container .jackpot-content .wheel-container .wheel-overlay .wheel-overlay-content .wheel-overlay-waiting #timer .progress {
+    width: 0%;
+    height: 100%;
+    background-image: linear-gradient(to right, #44CE6B, #306040);
+    background-size: 200% 100%;
+    border-radius: 2px;
+    animation: fill-progress 25s linear forwards;
+}
+
+@keyframes fill-progress {
+    0% {
+        background-position: left;
+    }
+
+    100% {
+        background-position: right;
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
 
 
 
@@ -265,7 +295,8 @@
     outline: none;
 }
 
-.pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-input-area .bet-input-amount .left-side-inputs input::-webkit-outer-spin-button, .pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-input-area .bet-input-amount .left-side-inputs input::-webkit-inner-spin-button {
+.pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-input-area .bet-input-amount .left-side-inputs input::-webkit-outer-spin-button,
+.pvp-jackpot-container .jackpot-content .wheel-container .bet-container .bet-input-area .bet-input-amount .left-side-inputs input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
@@ -398,7 +429,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 4px; 
+    gap: 4px;
 }
 
 .pvp-jackpot-container .jackpot-content .active-players-container .content .players .players-container .player .player-info img {

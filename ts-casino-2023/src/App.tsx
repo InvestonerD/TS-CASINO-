@@ -8,7 +8,7 @@ import Crash from './pages/Crash';
 // import RaffleDetails from './pages/RaffleDetails';
 // import Jackpot from './pages/Jackpot';
 // import Coinflip from './pages/Coinflip';
-// import PVPJackpot from './pages/PVPJackpot';
+import PVPJackpot from './pages/PVPJackpot';
 // import Roulette from './pages/Roulette';
 // import NFTsBattles from './pages/NFTsBattles';
 
@@ -34,13 +34,13 @@ function App(): JSX.Element {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/crash" element={<Crash />} />
-            {/* // <Route exact path="/raffles" element={<Raffles />} />
-            // <Route path="/raffles/:id" element={<RaffleDetails />} />
-            // <Route path="/jackpot" element={<Jackpot />} />
-            // <Route path="/coinflip" element={<Coinflip />} />
-            // <Route path="/pvp-jackpot" element={<PVPJackpot />} />
-            // <Route path="/roulette" element={<Roulette />} />
-            // <Route exact path="/nfts-battles" element={<NFTsBattles />} /> */}
+            <Route path="/pvp-jackpot" element={<PVPJackpot />} />
+            {/* <Route exact path="/raffles" element={<Raffles />} />
+            <Route path="/raffles/:id" element={<RaffleDetails />} />
+            <Route path="/jackpot" element={<Jackpot />} />
+            <Route path="/coinflip" element={<Coinflip />} />
+            <Route path="/roulette" element={<Roulette />} />
+            <Route exact path="/nfts-battles" element={<NFTsBattles />} />  */}
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Router>

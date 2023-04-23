@@ -32,33 +32,39 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({ currency, handleCurrenc
     const [blazedConvertedBalance, setBlazedConvertedBalance] = useState<number>(0);
     const [blazedLockedBalance, setBlazedLockedBalance] = useState<number>(0);
 
-    const updateValues = useCallback(
-        (data: any) => {
-            const solanaPrice = parseFloat(data.solana.$numberDecimal);
-            console.log(solanaPrice);
-            const solanaConvertion = document.getElementById("sol-convertion") as HTMLElement;
-            solanaConvertion.innerHTML = solanaPrice.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-            const avatar = document.getElementById("avatar") as HTMLImageElement;
-            const username = document.getElementById("username") as HTMLElement;
+    const updateValues = useCallback((data: any) => {
+        const solanaPrice = parseFloat(data.solana.$numberDecimal);
+        const blazedBalance = parseFloat(data.blazed.$numberDecimal);
+        const usdFormatter = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' });
+        const avatar = document.getElementById("avatar") as HTMLImageElement;
+        const username = document.getElementById("username") as HTMLElement;
+        const blazedElement = document.getElementById("balance") as HTMLElement;
 
-            setBlazedBalance(parseFloat(data.blazed.$numberDecimal));
-            const solanaBal = parseFloat(data.balance.$numberDecimal);
-            setSolanaBalance(solanaBal);
-            setSolanaConvertedBalance(solanaBal / solanaPrice);
-            setBlazedConvertedBalance(parseFloat(data.blazed.$numberDecimal));
-            setBlazedLockedBalance(parseFloat(data.blazed_locked.$numberDecimal));
-            avatar.src = data.avatar;
-            username.innerHTML = data.username;
-        },
-        [setBlazedBalance, setSolanaBalance, setSolanaConvertedBalance, setBlazedLockedBalance]
-    );
+        const solanaConvertedBalance = solanaPrice ? parseFloat(data.balance.$numberDecimal) / solanaPrice : 0;
+
+        blazedElement.innerHTML = usdFormatter.format(blazedBalance);
+        blazedElement.id = "blazed";
+        setBlazedBalance(blazedBalance);
+        setSolanaBalance(parseFloat(data.balance.$numberDecimal));
+        setSolanaConvertedBalance(solanaConvertedBalance);
+        setBlazedConvertedBalance(parseFloat(data.blazed.$numberDecimal));
+        setBlazedLockedBalance(parseFloat(data.blazed_locked.$numberDecimal));
+        avatar.src = data.avatar;
+        username.innerHTML = data.username;
+
+        const solanaConvertion = document.getElementById("sol-convertion") as HTMLElement;
+        solanaConvertion.innerHTML = usdFormatter.format(solanaPrice);
+
+        if (window.location.href.includes("/pvp-jackpot")) {
+            const solanaBalanceElement = document.getElementById("blazed") as HTMLElement;
+            handleCurrencyChange("solana");
+            solanaBalanceElement.innerHTML = parseFloat(data.balance.$numberDecimal).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+        }
+    }, [setBlazedBalance, setSolanaBalance, setSolanaConvertedBalance, setBlazedConvertedBalance, setBlazedLockedBalance]);
 
     useEffect(() => {
         if (publicKey) {
             socket.emit("wallet-connected", publicKey.toString());
-            toast.success("Bank connected!");
-        } else {
-            toast.error("Bank disconnected!");
         }
     }, [publicKey]);
 

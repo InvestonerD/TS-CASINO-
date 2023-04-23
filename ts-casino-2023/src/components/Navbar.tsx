@@ -4,7 +4,8 @@ import "../styles/navbar.css";
 import chat from "../images/icons/chat.svg";
 import user from "../images/icons/user.svg";
 import cross from "../images/icons/cross.svg";
-import sol from "../images/design/sol.png";
+import sol from "../images/design/solana-currency.png";
+import blazed from "../images/design/blazed-currency.png";
 import deposit from "../images/icons/deposit.svg";
 import default_image from "../images/design/default_image.png";
 import unverified from "../images/icons/unverified-badge.svg";
@@ -48,8 +49,55 @@ export const Navbar = () => {
 
     const [currency, setCurrency] = useState<string>('blazed');
 
+    const [balanceId, setBalanceId] = useState('balance');
+
+
     const handleCurrencyChange = (newCurrency: string) => {
         setCurrency(newCurrency);
+        let newBalanceId = '';
+
+        if (newCurrency === 'solana') {
+            newBalanceId = 'solana';
+            const solanaBalanceElement = document.getElementById('solana-convertion');
+            const cleanBalance = solanaBalanceElement?.textContent?.replace(/[$,]/g, '');
+            const numberBalance = parseFloat(cleanBalance || '0');
+            document.querySelectorAll('.balance').forEach((balanceElement) => {
+                balanceElement.textContent = '$' + numberBalance.toLocaleString('en-US', { maximumFractionDigits: 2, minimumFractionDigits: 2 });
+                balanceElement.id = newBalanceId;
+            });
+            const currencyImage = document.getElementById('currency-image') as HTMLImageElement;
+            currencyImage.src = sol;
+        } else if (newCurrency === 'blazed') {
+            newBalanceId = 'blazed';
+            const blazedBalanceElement = document.getElementById('blazed-convertion');
+            const newBalanceRef = document.getElementById(newBalanceId) as HTMLDivElement;
+            if (balanceRef.current && newBalanceRef) {
+                newBalanceRef.textContent = blazedBalanceElement ? blazedBalanceElement.textContent : '';
+                balanceRef.current.id = newBalanceId;
+            }
+            document.querySelectorAll('.balance').forEach((balanceElement) => {
+                balanceElement.id = newBalanceId;
+                balanceElement.textContent = blazedBalanceElement ? blazedBalanceElement.textContent : '';
+            });
+            const currencyImage = document.getElementById('currency-image') as HTMLImageElement;
+            currencyImage.src = blazed;
+        } else if (newCurrency === 'blazed_locked') {
+            newBalanceId = 'blazed-locked';
+            const blazedLockedBalanceElement = document.getElementById('blazed-locked');
+            const newBalanceRef = document.getElementById(newBalanceId) as HTMLDivElement;
+            if (balanceRef.current && newBalanceRef) {
+                newBalanceRef.textContent = blazedLockedBalanceElement ? blazedLockedBalanceElement.textContent : '';
+                balanceRef.current.id = newBalanceId;
+            }
+            document.querySelectorAll('.balance').forEach((balanceElement) => {
+                balanceElement.id = newBalanceId;
+                balanceElement.textContent = blazedLockedBalanceElement ? blazedLockedBalanceElement.textContent : '';
+            });
+            const currencyImage = document.getElementById('currency-image') as HTMLImageElement;
+            currencyImage.src = blazed;
+        }
+
+        setBalanceId(newBalanceId);
     };
 
     useEffect(() => {
@@ -144,7 +192,7 @@ export const Navbar = () => {
 
                 <div className={isConnected ? "user-balance connected" : "user-balance"} >
 
-                    <img src={sol} alt="sol" className="sol-logo" id='currency-image' />
+                    <img src={blazed} alt="sol" className="sol-logo" id='currency-image' />
 
                     <span className="balance" ref={balanceRef} id='balance'></span>
 
