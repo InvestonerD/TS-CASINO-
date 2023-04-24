@@ -1,16 +1,16 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { WalletAuthWrapper } from './context/WalletAuthContext';
 import Home from './pages/Home';
 import NotFoundPage from './pages/404';
 import Crash from './pages/Crash';
-// import Raffles from './pages/Raffles';
-// import RaffleDetails from './pages/RaffleDetails';
+import Raffles from './pages/Raffles';
+import RaffleDetails from './pages/RaffleDetails';
 // import Jackpot from './pages/Jackpot';
 // import Coinflip from './pages/Coinflip';
 import PVPJackpot from './pages/PVPJackpot';
 // import Roulette from './pages/Roulette';
 // import NFTsBattles from './pages/NFTsBattles';
+import Exchange from './pages/Exchange';
 
 import { ToastContainer } from 'react-toastify';
 
@@ -35,12 +35,13 @@ function App(): JSX.Element {
             <Route path="/" element={<Home />} />
             <Route path="/crash" element={<Crash />} />
             <Route path="/pvp-jackpot" element={<PVPJackpot />} />
-            {/* <Route exact path="/raffles" element={<Raffles />} />
+            <Route path="/raffles" element={<Raffles />} />
             <Route path="/raffles/:id" element={<RaffleDetails />} />
-            <Route path="/jackpot" element={<Jackpot />} />
+            {/* <Route path="/jackpot" element={<Jackpot />} />
             <Route path="/coinflip" element={<Coinflip />} />
             <Route path="/roulette" element={<Roulette />} />
             <Route exact path="/nfts-battles" element={<NFTsBattles />} />  */}
+            <Route path="/exchange" element={<Exchange />} />
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Router>

@@ -45,7 +45,7 @@ const useWalletEffect = () => {
 };
 
 const WalletAuthWrapper: React.FC<WalletAuthWrapperProps> = ({ children }) => {
-    const endpoint = 'https://flashy-blissful-emerald.solana-mainnet.discover.quiknode.pro/5fa5cacd9e4a581e727c0bc7fa844c452f0c30cb/';
+    const endpoint = 'https://maximum-wild-cloud.solana-mainnet.discover.quiknode.pro/23e472715f752adf4c286795dc3f1c299ecd284d/';
     const wallets = [
         new SolflareWalletAdapter(),
         new SolongWalletAdapter(),

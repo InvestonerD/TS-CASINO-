@@ -22,7 +22,7 @@ interface CurrencySelectProps {
     updateBalance: (balance: number) => void;
 }
 
-const socket = io("http://localhost:4000/general");
+const socket = io("http://localhost:5174/general");
 const CurrencySelect: React.FC<CurrencySelectProps> = ({ currency, handleCurrencyChange, handleCurrencySelect, handleCurrencySelectBack, handleDeposit, updateBalance, }) => {
 
     const { publicKey } = useWallet();

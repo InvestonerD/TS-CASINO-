@@ -104,7 +104,7 @@ const SideMenu = () => {
 
                     <div className="icon-container">
 
-                        <img src={exchange} alt="TID_logo" />
+                        <img src={exchange} alt="TID_logo" onClick={() => handleIconClick("Exchange", "/exchange")}/>
 
                         <p className="animate__animated animate__fadeIn">Exchange</p>
 

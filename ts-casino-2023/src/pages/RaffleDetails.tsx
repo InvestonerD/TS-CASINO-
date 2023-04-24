@@ -9,8 +9,8 @@ import io from "socket.io-client";
 import '../styles/raffledetails.css'
 import { toast } from "react-toastify";
 
-  const socket = io('casino-server.fly.dev/raffles');
-  // const socket = io("http://localhost:4000/raffles");
+  // const socket = io('casino-server.fly.dev/raffles');
+  const socket = io("http://localhost:5174/raffles");
 
 function RaffleDetails() {
   const [raffle, setRaffle] = useState(null);

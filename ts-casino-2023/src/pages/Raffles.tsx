@@ -8,8 +8,8 @@ import io from 'socket.io-client';
 
 import '../styles/raffles.css'
 
-    const socket = io('casino-server.fly.dev/raffles');
-    // const socket = io("http://localhost:4000/raffles");
+    // const socket = io('casino-server.fly.dev/raffles');
+    const socket = io("http://localhost:5174/raffles");
 
 function Raffles() {
 
