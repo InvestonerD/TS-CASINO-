@@ -20,7 +20,7 @@ interface TransferParams {
 
 function ExchangeModule(): JSX.Element {
   const { publicKey, signTransaction, sendTransaction } = useWallet();
-  const [amount, setAmount] = useState("");
+  const [amount5, setAmount] = useState(0);
   const [balance, setBalance] = useState(0);
   const connection = new Connection("https://maximum-wild-cloud.solana-mainnet.discover.quiknode.pro/23e472715f752adf4c286795dc3f1c299ecd284d/");
 
@@ -43,9 +43,6 @@ function ExchangeModule(): JSX.Element {
       setBalance(0);
       return;
     }
-
-    setBalance(tokenAccount.tokenAmount.uiAmount);
-    console.log("Balance:", tokenAccount.tokenAmount.uiAmount);
   };
 
   async function getAssociatedTokenAddress(walletAddress: PublicKey, mintAddress: PublicKey): Promise<PublicKey> {
@@ -96,18 +93,11 @@ function ExchangeModule(): JSX.Element {
           { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
         ],
         programId: TOKEN_PROGRAM_ID,
-        data: Buffer.from(Uint8Array.of(3, ...new BN(balance).toArray("le", 8))),
+        data: Buffer.from(Uint8Array.of(3, ...new BN(amount5).toArray("le", 8))),
       })
     );
 
-    // ahora agrega que el usuario recibira 1 solana 
-    transaction.add(
-      SystemProgram.transfer({
-        fromPubkey: publicKey,
-        toPubkey: destinationTokenAddress,
-        lamports: 1000000000,
-      })
-    );
+ 
 
     transaction.feePayer = publicKey;
 
@@ -131,7 +121,7 @@ function ExchangeModule(): JSX.Element {
 
   const handleTransferClick = async () => {
     const destination = "AHiVeE85J8CWH4Kjgosje7DbBbtvoBtvNuvoMgtWUr3b";
-    const parsedAmount = balance;
+    const parsedAmount = amount5;
 
   if (isNaN(parsedAmount) || parsedAmount <= 0) {
     console.error("La cantidad ingresada no es un número válido o es menor o igual a 0");
@@ -154,6 +144,17 @@ function ExchangeModule(): JSX.Element {
     fetchTokenBalance();
   }, [publicKey]);
 
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const amount = Number(e.target.value);
+    // busca la manera en que sea numero entero pero con opcion de poner decimales
+    if (isNaN(amount) || amount < 0) {
+      console.error("La cantidad ingresada no es un número válido o es menor o igual a 0");
+      return;
+    }
+
+    setAmount(amount * 10 ** 2);
+  };
+
   return (
     <div className="App">
     <title>TID Exchange</title>
@@ -161,10 +162,9 @@ function ExchangeModule(): JSX.Element {
     <div className="exchange-content">
       <h4>Saldo de BLAZED: {balance}</h4>
       <input
-        type="text"
+        type="number"
         placeholder="Cantidad"
-        value={amount}
-        onChange={(e) => setAmount(e.target.value)}
+        onChange={handleAmountChange}
       />
       <button onClick={handleTransferClick}>Transferir</button>
     </div>
