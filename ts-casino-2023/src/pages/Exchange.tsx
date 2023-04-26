@@ -8,15 +8,19 @@ import '../styles/exchange.css';
 import ExchangeModule from '../extras/exchange_module';
 
 function Exchange(): JSX.Element {
+
   return (
+
     <div className='App'>
+
         <title>TID Exchange</title>
 
         <SideMenu />
 
         <div className='exchange-container'>
+
             <Navbar />
-        
+
             <div className='exchange-content'>
 
                 <ExchangeModule />
@@ -30,7 +34,7 @@ function Exchange(): JSX.Element {
         <SideChat />
 
     </div>
-            
+
   );
 }
 

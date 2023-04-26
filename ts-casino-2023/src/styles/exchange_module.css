@@ -1,0 +1,202 @@
+.exchange-card {
+    width: 464px;
+    height: auto;
+    border-radius: 4px;
+    background-color: #131315;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 24px;
+    gap: 16px;
+}
+
+.exchange-card .card-header {
+    width: 100%;
+    height: 32px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.exchange-card .card-header h3 {
+    font-family: 'Bahnschrift';
+    font-size: 24px;
+    font-weight: 600;
+    color: #EDEAE5;
+    cursor: default;
+}
+
+
+
+
+
+.exchange-card .card-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;  
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+}
+
+
+
+
+
+.exchange-card .card-content .exchange-input {
+    width: 100%;
+    height: 72px;
+    border-radius: 4px;
+    padding: 12px;
+    gap: 16px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px #1C1D21 solid;
+}
+
+.exchange-card .card-content .exchange-input .exchange-input-row {
+    width: 100%;
+    height: 100%;
+}
+
+.exchange-card .card-content .exchange-input .exchange-input-row input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+    font-family: 'Bahnschrift';
+    font-size: 24px;
+    font-weight: 500;
+    color: #EDEAE5;
+    outline: none;
+}
+
+.exchange-card .card-content .exchange-input .exchange-input-row input::-webkit-outer-spin-button,
+.exchange-card .card-content .exchange-input .exchange-input-row input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.exchange-card .card-content .exchange-input .exchange-token-info {
+    width: 100px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.exchange-card .card-content .exchange-input .exchange-token-info .token {
+    width: auto;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 0 16px;
+    background-color: #0A0A0B;
+    border-radius: 4px;
+}
+
+.exchange-card .card-content .exchange-input .exchange-token-info .token img {
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+}
+
+.exchange-card .card-content .exchange-input .exchange-token-info .token h3 {
+    font-family: 'Bahnschrift';
+    font-size: 14px;
+    font-weight: 600;
+    color: #EDEAE5;
+    cursor: default;
+    padding-top: 3.5%;
+}
+
+.exchange-card .card-content .exchange-input .exchange-token-info .token-balance h3 {
+    font-family: 'Bahnschrift';
+    font-size: 14px;
+    font-weight: 500;
+    color: #6E6E78;
+    cursor: default;
+}
+
+
+
+
+
+.exchange-card .card-content .transaction-details {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 2px #1C1D21 solid;
+    border-radius: 4px;
+}
+
+.exchange-card .card-content .transaction-details .transaction-details-row {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.exchange-card .card-content .transaction-details .transaction-details-row h3 {
+    font-family: 'Bahnschrift';
+    font-size: 16px;
+    font-weight: 500;
+    color: #6E6E78;
+    cursor: default;
+}
+
+.exchange-card .card-content .transaction-details .transaction-details-row span {
+    font-family: 'Bahnschrift';
+    font-size: 16px;
+    font-weight: 500;
+    color: #EDEAE5;
+    cursor: default;
+}
+
+.exchange-card .card-content .transaction-details .transaction-details-row:nth-child(2) span {
+    font-family: 'Bahnschrift';
+    font-size: 16px;
+    font-weight: 500;
+    color: #44CE6B;
+    cursor: default;
+}
+
+
+
+
+
+.exchange-card .card-content button {
+    width: 100%;
+    height: 36px;
+    border-radius: 4px;
+    background-color: #44CE6B;
+    border: 2px #44CE6B solid;
+    font-family: 'Bahnschrift';
+    font-size: 18px;
+    font-weight: 700;
+    color: #0A0A0B;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.exchange-card .card-content button:hover {
+    background-color: transparent;
+    color: #EDEAE5;
+    border: 2px #EDEAE5 solid;
+    transition: .2s;
+}

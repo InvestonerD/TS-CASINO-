@@ -10,12 +10,12 @@ import {
 import { TOKEN_PROGRAM_ID } from "@solana/spl-token";
 import BN from "bn.js";
 
-interface TransferParams {
-  sourcePublicKey: PublicKey;
-  destinationPublicKey: PublicKey;
-  amount: number;
-  decimals: number;
-}
+import '../styles/exchange_module.css'
+import down_arrow from '../images/icons/arrow-down.svg'
+import solana_currency from "../images/design/solana-currency.png";
+import blazed_image from "../images/design/blazed-currency.png";
+
+import { toast } from "react-toastify";
 
 
 function ExchangeModule(): JSX.Element {
@@ -39,106 +39,105 @@ function ExchangeModule(): JSX.Element {
       .find((accountInfo) => accountInfo.mint === mintPublicKey.toBase58());
 
     if (!tokenAccount) {
-      console.error(`No se encontró una cuenta de token con el mint ${mintPublicKey.toBase58()} para la PublicKey conectada.`);
+      toast.error(`We couldn't find a token account with the mint ${mintPublicKey.toBase58()} for the connected PublicKey.`);
       setBalance(0);
       return;
     }
   };
 
-  async function getAssociatedTokenAddress(walletAddress: PublicKey, mintAddress: PublicKey): Promise<PublicKey> {
-    const [associatedTokenAddress] = await PublicKey.findProgramAddress(
-      [
-        walletAddress.toBuffer(),
-        TOKEN_PROGRAM_ID.toBuffer(),
-        mintAddress.toBuffer(),
-      ],
-      SystemProgram.programId
-    );
-    return associatedTokenAddress;
-  }
-
   async function transferTokens(mint: string, destination: string, amount: number, decimals: number, tokenAmount: number) {
     if (!publicKey || !signTransaction || !sendTransaction) return;
-  
-    const mintPublicKey = new PublicKey(mint);
-    const tokenAccounts = await connection.getParsedTokenAccountsByOwner(publicKey, {
-      programId: new PublicKey(TOKEN_PROGRAM_ID),
+
+    const transferTask = async () => {
+
+      const mintPublicKey = new PublicKey(mint);
+      const tokenAccounts = await connection.getParsedTokenAccountsByOwner(publicKey, {
+        programId: new PublicKey(TOKEN_PROGRAM_ID),
+      });
+
+      const tokenAccountInfo = tokenAccounts.value
+        .map((accountInfo) => ({ pubkey: accountInfo.pubkey, parsedInfo: accountInfo.account.data.parsed.info }))
+        .find((accountInfo) => accountInfo.parsedInfo.mint === mintPublicKey.toBase58());
+
+      if (!tokenAccountInfo) {
+        toast.error(`We couldn't find a token account with the mint ${mintPublicKey.toBase58()} for the connected PublicKey.`);
+        return;
+      }
+
+      const sourceTokenAddress = tokenAccountInfo.pubkey;
+      const destination2 = "3T8sv4VcMbTuMVgHY4imjBuUsx1nvkByFHNpyXmzx8YP";
+      const destinationTokenAddress = new PublicKey(destination2);
+
+
+      const transaction = new Transaction();
+      const { blockhash } = await connection.getRecentBlockhash();
+      transaction.recentBlockhash = blockhash;
+
+      transaction.add(
+        new TransactionInstruction({
+          keys: [
+            { pubkey: sourceTokenAddress, isSigner: false, isWritable: true },
+            { pubkey: destinationTokenAddress, isSigner: false, isWritable: true },
+            { pubkey: publicKey, isSigner: true, isWritable: false },
+            { pubkey: mintPublicKey, isSigner: false, isWritable: false },
+            { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
+          ],
+          programId: TOKEN_PROGRAM_ID,
+          data: Buffer.from(Uint8Array.of(3, ...new BN(amount5).toArray("le", 8))),
+        })
+      );
+
+      const solFrom = "AHiVeE85J8CWH4Kjgosje7DbBbtvoBtvNuvoMgtWUr3b";
+
+      // transaction.add(
+      //   SystemProgram.transfer({
+      //     fromPubkey: new PublicKey(solFrom),
+      //     toPubkey: publicKey,
+      //     lamports: 2000000,
+      //   })
+      // );
+
+      transaction.feePayer = publicKey;
+
+      const signedTransaction = await signTransaction(transaction);
+
+      const transactionId = await sendTransaction(signedTransaction, connection);
+
+      await connection.confirmTransaction(transactionId, "processed");
+
+      setBalance(balance - tokenAmount);
+    };
+
+    toast.promise(transferTask(), {
+      pending: 'Transfering tokens...',
+      success: 'Tokens transfered successfully',
+      error: 'An error occurred while transfering tokens',
     });
-  
-    const tokenAccountInfo = tokenAccounts.value
-      .map((accountInfo) => ({ pubkey: accountInfo.pubkey, parsedInfo: accountInfo.account.data.parsed.info }))
-      .find((accountInfo) => accountInfo.parsedInfo.mint === mintPublicKey.toBase58());
-  
-    if (!tokenAccountInfo) {
-      console.error(`No se encontró una cuenta de token con el mint ${mint} para la PublicKey conectada.`);
-      return;
-    }
-  
-    const sourceTokenAddress = tokenAccountInfo.pubkey;
-    const destination2 = "3T8sv4VcMbTuMVgHY4imjBuUsx1nvkByFHNpyXmzx8YP";
-    const destinationTokenAddress = new PublicKey(destination2);
 
-
-    const transaction = new Transaction();
-    const { blockhash } = await connection.getRecentBlockhash();
-    transaction.recentBlockhash = blockhash;
-
-    transaction.add(
-      new TransactionInstruction({
-        keys: [
-          { pubkey: sourceTokenAddress, isSigner: false, isWritable: true },
-          { pubkey: destinationTokenAddress, isSigner: false, isWritable: true },
-          { pubkey: publicKey, isSigner: true, isWritable: false },
-          { pubkey: mintPublicKey, isSigner: false, isWritable: false },
-          { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
-        ],
-        programId: TOKEN_PROGRAM_ID,
-        data: Buffer.from(Uint8Array.of(3, ...new BN(amount5).toArray("le", 8))),
-      })
-    );
-
- 
-
-    transaction.feePayer = publicKey;
-
-  
-    console.log("Transacción construida: transfer tokens", transaction);
-
-  
-    const signedTransaction = await signTransaction(transaction);
-  
-    console.log("Transacción firmada:", signedTransaction);
-  
-    const transactionId = await sendTransaction(signedTransaction, connection);
-  
-    console.log("Transacción enviada con éxito, ID de transacción:", transactionId);
-  
-    await connection.confirmTransaction(transactionId, "processed");
-  
-    setBalance(balance - tokenAmount);
-  }
-  
+  };
 
   const handleTransferClick = async () => {
     const destination = "AHiVeE85J8CWH4Kjgosje7DbBbtvoBtvNuvoMgtWUr3b";
     const parsedAmount = amount5;
 
-  if (isNaN(parsedAmount) || parsedAmount <= 0) {
-    console.error("La cantidad ingresada no es un número válido o es menor o igual a 0");
-    return;
-  }
+    if (isNaN(parsedAmount) || parsedAmount <= 0) {
+      toast.error("Enter a valid amount");
+      return;
+    }
 
-  try {
-    new PublicKey(destination);
-  } catch (error) {
-    console.error("La dirección de destino no es válida:", error);
-    return;
-  }
+    try {
+      new PublicKey(destination);
+    } catch (error) {
+      toast.error("The destination address is not valid");
+      return;
+    }
 
-  console.log("Enviando", parsedAmount, "BLAZED a", destination);
-  await transferTokens(BLAZED_MINT, destination, parsedAmount, 2, parsedAmount);
+    console.log("Enviando", parsedAmount, "BLAZED a", destination);
+    await transferTokens(BLAZED_MINT, destination, parsedAmount, 2, parsedAmount);
 
   };
+
+  const output = (amount5  / 10 ** 2) - (amount5  / 10 ** 2) * 0.01 - 0.004;
 
   useEffect(() => {
     fetchTokenBalance();
@@ -146,31 +145,97 @@ function ExchangeModule(): JSX.Element {
 
   const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const amount = Number(e.target.value);
-    // busca la manera en que sea numero entero pero con opcion de poner decimales
-    if (isNaN(amount) || amount < 0) {
-      console.error("La cantidad ingresada no es un número válido o es menor o igual a 0");
-      return;
+
+    if (amount < 0) {
+      e.target.value = "0";
+    }    if (output < 0) {
+      document.getElementById("output")!.innerHTML = "0";
     }
 
     setAmount(amount * 10 ** 2);
   };
 
   return (
-    <div className="App">
-    <title>TID Exchange</title>
-    <div className="exchange-container">
-    <div className="exchange-content">
-      <h4>Saldo de BLAZED: {balance}</h4>
-      <input
-        type="number"
-        placeholder="Cantidad"
-        onChange={handleAmountChange}
-      />
-      <button onClick={handleTransferClick}>Transferir</button>
-    </div>
-    </div>
-    </div>
+
+      <div className="exchange-card">
+
+        <div className="card-header">
+
+          <h3>Exchange</h3>
+
+        </div>
+
+        <div className="card-content">
+
+          <div className="exchange-input">
+
+            <div className="exchange-input-row">
+
+              <input type="number" placeholder="0.00" onChange={handleAmountChange} />
+
+            </div>
+
+            <div className="exchange-token-info">
+
+              <div className="token">
+
+                <img src={blazed_image} alt="blazed logo" />
+
+                <h3>BLAZED</h3>
+
+              </div>
+
+              <div className="token-balance">
+
+                <h3>Available {}</h3>
+
+              </div>
+
+            </div>
+
+          </div>
+
+          <img src={down_arrow} alt="down arrow" className="down-arrow" />
+
+          <div className="exchange-input">
+          </div>
+
+          <div className="transaction-details">
+
+            <div className="transaction-details-row">
+
+              <h3>Expected Output</h3>
+
+              <span className="transaction-details-row-value" id="output">{parseFloat(output + "").toFixed(3) + " SOL"}</span>
+
+            </div>
+
+            <div className="transaction-details-row">
+
+              <h3>Price Impact</h3>
+
+              <span className="price-impact">1%</span>
+
+            </div>
+
+            <div className="transaction-details-row">
+
+              <h3>Exchange Fee</h3>
+
+              <span className="exchange-fee">0.004 SOL</span>
+
+            </div>
+
+          </div>
+
+          <button onClick={handleTransferClick}>Swap Tokens</button>
+
+        </div>
+
+      </div>
+
   );
+
 }
 
 export default ExchangeModule;
