@@ -5,6 +5,8 @@ import unselected from "../images/design/unselected.png";
 import solana_currency from "../images/design/solana-currency.png";
 import blazed_image from "../images/design/blazed-currency.png";
 import locked from "../images/design/locked.png";
+import guac from "../images/design/guac.png";
+import cookies from "../images/design/COOKIES.png";
 import default_image from "../images/design/default_image.png";
 
 import io from "socket.io-client";
@@ -22,7 +24,7 @@ interface CurrencySelectProps {
     updateBalance: (balance: number) => void;
 }
 
-const socket = io("http://localhost:5174/general");
+const socket = io("http://localhost:4000/general");
 const CurrencySelect: React.FC<CurrencySelectProps> = ({ currency, handleCurrencyChange, handleCurrencySelect, handleCurrencySelectBack, handleDeposit, updateBalance, }) => {
 
     const { publicKey } = useWallet();
@@ -199,6 +201,78 @@ const CurrencySelect: React.FC<CurrencySelectProps> = ({ currency, handleCurrenc
                     </div>
 
                 </div>
+
+                <div className={currency === "guac" ? "currency-select-container selected" : "currency-select-container"} onClick={() => handleCurrencyChange("guac")} >
+
+                    <div className='left-side-container'>
+
+                        <img src={currency === "guac" ? selected : unselected} alt="selected" />
+
+                        <div className='currency-amounts'>
+
+                            <h1>{blazedLockedBalance}</h1>
+
+                            <span id='blazed-locked'>{blazedLockedBalance.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span>
+
+                        </div>
+
+                    </div>
+
+                    <div className='right-side-container'>
+
+                        <div className='currency-name'>
+
+                            <img src={guac} alt="blazed" />
+
+                            <h1>GUAC</h1>
+
+                        </div>
+
+                        <div className='currency-comparison'>
+
+                            <span> <strong>GUAC</strong> = <span id='sol-convertion'></span> 1 <strong>BLAZED</strong></span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div className={currency === "guac" ? "currency-select-container selected" : "currency-select-container"} onClick={() => handleCurrencyChange("guac")} >
+
+<div className='left-side-container'>
+
+    <img src={currency === "cookies" ? selected : unselected} alt="selected" />
+
+    <div className='currency-amounts'>
+
+        <h1>{blazedLockedBalance}</h1>
+
+        <span id='cookies'>{blazedLockedBalance.toLocaleString('en-US', { style: 'currency', currency: 'USD' })}</span>
+
+    </div>
+
+</div>
+
+<div className='right-side-container'>
+
+    <div className='currency-name'>
+
+        <img src={cookies} alt="cookies" />
+
+        <h1>COOKIES</h1>
+
+    </div>
+
+    <div className='currency-comparison'>
+
+        <span> <strong>COOKIES</strong> = <span id='sol-convertion'></span> 1 <strong>BLAZED</strong></span>
+
+    </div>
+
+</div>
+
+</div>
 
                 <div className="currency-select-card-buttons">
                     <button id="currency-withdraw-button" onClick={handleCurrencySelect}>

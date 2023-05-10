@@ -33,7 +33,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 // const socket = io("casino-server.fly.dev/general");
-const socket = io("http://localhost:5174/general");
+const socket = io("http://localhost:4000/general");
 
 export const Navbar = () => {
 

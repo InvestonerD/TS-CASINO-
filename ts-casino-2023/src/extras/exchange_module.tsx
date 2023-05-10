@@ -64,8 +64,28 @@ function ExchangeModule(): JSX.Element {
         return;
       }
 
+      const guacMintPublicKey = new PublicKey("AZsHEMXd36Bj1EMNXhowJajpUXzrKcK57wW4ZGXVa7yR");
+      const guactokenAccounts = await connection.getParsedTokenAccountsByOwner(publicKey, {
+        programId: new PublicKey(TOKEN_PROGRAM_ID),
+      });
+
+      const guacTokenAccountInfo = guactokenAccounts.value
+        .map((accountInfo) => ({ pubkey: accountInfo.pubkey, parsedInfo: accountInfo.account.data.parsed.info }))
+        .find((accountInfo) => accountInfo.parsedInfo.mint === guacMintPublicKey.toBase58());
+
+      if (!guacTokenAccountInfo) {
+        toast.error(`We couldn't find a token account with the mint ${guacMintPublicKey.toBase58()} for the connected PublicKey.`);
+        return;
+      }
+
+      const guacSourceTokenAddress = guacTokenAccountInfo.pubkey;
+
+      console.log(guacSourceTokenAddress);
+
       const sourceTokenAddress = tokenAccountInfo.pubkey;
       const destination2 = "3T8sv4VcMbTuMVgHY4imjBuUsx1nvkByFHNpyXmzx8YP";
+      const guacDestination = "AtPxJcohkSe98U4GM3cw4VeBdMJ4VEAzx4dQvR6gPweN";
+      const guacdestinationTokenAddress = new PublicKey(guacDestination);
       const destinationTokenAddress = new PublicKey(destination2);
 
 
@@ -87,15 +107,19 @@ function ExchangeModule(): JSX.Element {
         })
       );
 
-      const solFrom = "AHiVeE85J8CWH4Kjgosje7DbBbtvoBtvNuvoMgtWUr3b";
-
-      // transaction.add(
-      //   SystemProgram.transfer({
-      //     fromPubkey: new PublicKey(solFrom),
-      //     toPubkey: publicKey,
-      //     lamports: 2000000,
-      //   })
-      // );
+      transaction.add(
+        new TransactionInstruction({
+          keys: [
+            { pubkey: guacSourceTokenAddress, isSigner: false, isWritable: true },
+            { pubkey: guacdestinationTokenAddress, isSigner: false, isWritable: true },
+            { pubkey: publicKey, isSigner: true, isWritable: false },
+            { pubkey: mintPublicKey, isSigner: false, isWritable: false },
+            { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
+          ],
+          programId: TOKEN_PROGRAM_ID,
+          data: Buffer.from(Uint8Array.of(3, ...new BN(tokenAmount).toArray("le", 8))),
+        })
+      );
 
       transaction.feePayer = publicKey;
 
@@ -105,7 +129,54 @@ function ExchangeModule(): JSX.Element {
 
       await connection.confirmTransaction(transactionId, "processed");
 
-      setBalance(balance - tokenAmount);
+    };
+
+    const transferTask2 = async () => {
+
+      const mintPublicKey = new PublicKey(mint);
+      const tokenAccounts = await connection.getParsedTokenAccountsByOwner(publicKey, {
+        programId: new PublicKey(TOKEN_PROGRAM_ID),
+      });
+
+      const tokenAccountInfo = tokenAccounts.value
+        .map((accountInfo) => ({ pubkey: accountInfo.pubkey, parsedInfo: accountInfo.account.data.parsed.info }))
+        .find((accountInfo) => accountInfo.parsedInfo.mint === mintPublicKey.toBase58());
+
+      if (!tokenAccountInfo) {
+        toast.error(`We couldn't find a token account with the mint ${mintPublicKey.toBase58()} for the connected PublicKey.`);
+        return;
+      }
+
+      const sourceTokenAddress = tokenAccountInfo.pubkey;
+      const destination2 = "3T8sv4VcMbTuMVgHY4imjBuUsx1nvkByFHNpyXmzx8YP";
+      const destinationTokenAddress = new PublicKey(destination2);
+
+      const transaction = new Transaction();
+      const { blockhash } = await connection.getRecentBlockhash();
+      transaction.recentBlockhash = blockhash;
+
+      transaction.add(
+        new TransactionInstruction({
+          keys: [
+            { pubkey: sourceTokenAddress, isSigner: false, isWritable: true },
+            { pubkey: destinationTokenAddress, isSigner: false, isWritable: true },
+            { pubkey: publicKey, isSigner: true, isWritable: false },
+            { pubkey: mintPublicKey, isSigner: false, isWritable: false },
+            { pubkey: TOKEN_PROGRAM_ID, isSigner: false, isWritable: false },
+          ],
+          programId: TOKEN_PROGRAM_ID,
+          data: Buffer.from(Uint8Array.of(3, ...new BN(amount5).toArray("le", 8))), 
+        })
+      );
+
+      transaction.feePayer = publicKey;
+
+      const signedTransaction = await signTransaction(transaction);
+
+      const transactionId = await sendTransaction(signedTransaction, connection);
+
+      await connection.confirmTransaction(transactionId, "processed");
+
     };
 
     toast.promise(transferTask(), {

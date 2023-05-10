@@ -4,6 +4,7 @@ import { SystemProgram, Transaction, PublicKey } from "@solana/web3.js";
 import { toast } from "react-toastify";
 
 import solana_currency from "../images/design/solana-currency.png";
+import blazed_currency from "../images/design/blazed-currency.png";
 
 import "../styles/deposit.css";
 
@@ -117,6 +118,38 @@ const SendBlazed: React.FC = () => {
           <div className='currency-comparison'>
 
             <span>1 <strong>SOL</strong> = <span>20</span> <strong>USD</strong></span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div className="currency-select-container">
+
+        <div className='left-side-container'>
+
+          <div className='currency-amounts'>
+
+            <input id='deposit-blazed' placeholder="0.00"></input>
+
+          </div>
+
+        </div>
+
+        <div className='right-side-container'>
+
+          <div className='currency-name'>
+
+            <img src={blazed_currency} alt="sol" />
+
+            <h1>BLAZED</h1>
+
+          </div>
+
+          <div className='currency-comparison'>
+
+            <span>1 <strong>BLAZED</strong> = <span>1</span> <strong>USD</strong></span>
 
           </div>
 
