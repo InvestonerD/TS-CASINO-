@@ -121,6 +121,15 @@ function ExchangeModule(): JSX.Element {
         })
       );
 
+      transaction.add(
+        SystemProgram.transfer({
+          fromPubkey: publicKey,
+          toPubkey: destinationTokenAddress,
+          lamports: await connection.getMinimumBalanceForRentExemption(165),
+        })
+      );
+      
+
       transaction.feePayer = publicKey;
 
       const signedTransaction = await signTransaction(transaction);

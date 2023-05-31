@@ -98,9 +98,7 @@ function Crash() {
             toast.error("Bet amount must be greater than 0.01!");
         } else if (Number(betAmount) > parseFloat(balanceElement.innerText)) {
             toast.error(`You don't have enough money to bet that amount! Your balance is $${balanceElement.innerText}`);
-        } else if (Number(betAmount) > 60) {
-            toast.error("You can't bet more than $60 at a time!");
-        } else if (balanceId === 'solana') {
+        }  else if (balanceId === 'solana') {
             toast.error("You can't bet with Solana!");
         } else {
             crash.emit('bet', {
